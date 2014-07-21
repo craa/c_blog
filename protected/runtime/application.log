@@ -1,0 +1,12 @@
+2014/07/21 17:14:39 [error] [exception.CException] exception 'CException' with message 'Property "CUrlManager.suffix" is not defined.' in D:\workspace\c_blog\framework\base\CComponent.php:173
+Stack trace:
+#0 D:\workspace\c_blog\framework\YiiBase.php(220): CComponent->__set('suffix', '.html')
+#1 D:\workspace\c_blog\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 D:\workspace\c_blog\framework\base\CApplication.php(522): CModule->getComponent('urlManager')
+#3 D:\workspace\c_blog\framework\web\CWebApplication.php(140): CApplication->getUrlManager()
+#4 D:\workspace\c_blog\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\workspace\c_blog\index.php(13): CApplication->run()
+#6 {main}
+REQUEST_URI=/c_blog/index.php?r=site/contact
+HTTP_REFERER=http://localhost/c_blog/index.php?r=site/page&view=about
+---
