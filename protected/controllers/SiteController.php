@@ -53,6 +53,9 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+        if(!empty($_POST)){
+            var_dump($_POST);
+        }
         $this->layout = 'main';
         $this->render('index');
 	}

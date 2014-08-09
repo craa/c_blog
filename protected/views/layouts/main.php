@@ -8,7 +8,7 @@
 ?>
 <?php $this->beginContent('//layouts/base'); ?>
 
-    <div role="banner" class="navbar navbar-inverse navbar-fixed-top ue-docs-nav">
+    <div role="banner" class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button data-target=".bs-navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle collapsed">
@@ -34,16 +34,7 @@
             </nav>
         </div>
     </div>
-    <div class="ue-docs-caption">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>UEditor文档</h1>
-                    <p>UEditor富文本编辑器，轻量，可定制，注重用户体验。</p>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 <div class="container">
     <?php echo $content; ?>
