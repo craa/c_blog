@@ -14,4 +14,9 @@ class SubscribeEventMessage extends BaseReqMessage
     {
 
     }
+
+    public static function handle($oMessage, $className=__CLASS__)
+    {
+        return parent::handle($oMessage, $className);
+    }
 }

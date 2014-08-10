@@ -51,10 +51,10 @@ class BaseReqMessage
 
     }
 
-    public static function handle($oMessage)
+    public static function handle($oMessage, $className=__CLASS__)
     {
         if(self::$_instance === null){
-            self::$_instance = new self($oMessage);
+            self::$_instance = new $className($oMessage);
         }
 
         return self::$_instance;

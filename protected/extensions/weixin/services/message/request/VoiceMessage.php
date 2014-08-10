@@ -17,4 +17,9 @@ class VoiceMessage extends BaseReqMessage
     {
         RespMessage::replyVoice($this->MediaID);
     }
+
+    public static function handle($oMessage, $className=__CLASS__)
+    {
+        return parent::handle($oMessage, $className);
+    }
 }

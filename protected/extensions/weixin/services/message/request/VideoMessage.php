@@ -20,4 +20,9 @@ class VideoMessage extends BaseReqMessage
             'description'=>'视频描述'
         ));
     }
+
+    public static function handle($oMessage, $className=__CLASS__)
+    {
+        return parent::handle($oMessage, $className);
+    }
 }
