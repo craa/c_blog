@@ -26,10 +26,10 @@ class RespNewsMessage extends BaseRespMessage
     protected function packageItems($items)
     {
         $itemTpl = "<item>
-                    <Title><![CDATA[title]]></Title>
-                    <Description><![CDATA[description]]></Description>
-                    <PicUrl><![CDATA[picurl]]></PicUrl>
-                    <Url><![CDATA[url]]></Url>
+                    <Title><![CDATA[%s]]></Title>
+                    <Description><![CDATA[%s]]></Description>
+                    <PicUrl><![CDATA[%s]]></PicUrl>
+                    <Url><![CDATA[%s]]></Url>
                     </item>";
         $ret = '';
         foreach($items as $item)
