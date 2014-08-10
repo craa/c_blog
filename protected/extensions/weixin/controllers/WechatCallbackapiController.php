@@ -5,7 +5,6 @@
  * Date: 14-8-10
  * Time: 上午3:18
  */
-
 class WechatCallbackapiController extends CController
 {
 
@@ -18,43 +17,6 @@ class WechatCallbackapiController extends CController
             }else{
                 $this->responseMsg();
             }
-        }
-    }
-
-    public function responseMsg()
-    {
-        //get post data, May be due to the different environments
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-
-        //extract post data
-        if (!empty($postStr)){
-
-            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $fromUsername = $postObj->FromUserName;
-            $toUsername = $postObj->ToUserName;
-            $keyword = trim($postObj->Content);
-            $time = time();
-            $textTpl = "<xml>
-							<ToUserName><![CDATA[%s]]></ToUserName>
-							<FromUserName><![CDATA[%s]]></FromUserName>
-							<CreateTime>%s</CreateTime>
-							<MsgType><![CDATA[%s]]></MsgType>
-							<Content><![CDATA[%s]]></Content>
-							<FuncFlag>0</FuncFlag>
-							</xml>";
-            if(!empty( $keyword ))
-            {
-                $msgType = "text";
-                $contentStr = "Welcome to wechat world!";
-                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                echo $resultStr;
-            }else{
-                echo "Input something...";
-            }
-
-        }else {
-            echo "";
-            exit;
         }
     }
 
@@ -74,6 +36,47 @@ class WechatCallbackapiController extends CController
             return true;
         }else{
             return false;
+        }
+    }
+
+    public function responseMsg()
+    {
+        //get post data, May be due to the different environments
+        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+
+        //extract post data
+        if (!empty($postStr)){
+
+            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            define('FROM_USER_NAME', $postObj->FromUserName);
+            define('TO_USER_NAME', $postObj->ToUserName);
+            $msg_type = $postObj->MsgType;
+
+            switch($msg_type)
+            {
+                case 'text':
+
+                case 'image':
+
+                case 'voice':
+
+                case 'video':
+
+                case 'location':
+
+                case 'link':
+
+                case 'event':
+                    TextMessage::handle($postObj);
+                    break;
+                default:
+                    echo '';
+                    exit;
+            }
+
+        }else {
+            echo '';
+            exit;
         }
     }
 }
