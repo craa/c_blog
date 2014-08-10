@@ -21,7 +21,7 @@ class WeixinModule extends CWebModule
 		{
 			// this method is called before any module controller action is performed
 			// you may place customized code here
-
+            define('TOKEN', Yii::app()->controller->module->token);
 			return true;
 		}
 		else

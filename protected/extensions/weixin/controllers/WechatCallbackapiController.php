@@ -12,22 +12,12 @@ class WechatCallbackapiController extends CController
     //入口
     public function actionIndex()
     {
-        if(isset($_GET['echostr'])){
-            define('TOKEN', Yii::app()->controller->module->token);
-            $this->valid();
-        }else{
-            $this->responseMsg();
-        }
-    }
-
-    public function valid()
-    {
-        $echoStr = $_GET["echostr"];
-
-        //valid signature , option
         if($this->checkSignature()){
-            echo $echoStr;
-            exit;
+            if(isset($_GET['echostr'])){
+                echo $_GET['echostr'];
+            }else{
+                $this->responseMsg();
+            }
         }
     }
 
