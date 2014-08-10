@@ -13,7 +13,7 @@ class RespVoiceMessage extends BaseRespMessage
         $tpl = "<xml>
                 <ToUserName><![CDATA[%s]]></ToUserName>
                 <FromUserName><![CDATA[%s]]></FromUserName>
-                <CreateTime>s%</CreateTime>
+                <CreateTime>%s</CreateTime>
                 <MsgType><![CDATA[voice]]></MsgType>
                 <Voice>
                 <MediaId><![CDATA[%s]]></MediaId>

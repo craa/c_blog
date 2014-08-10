@@ -15,10 +15,10 @@ class RespNewsMessage extends BaseRespMessage
         $tpl = "<xml>
                 <ToUserName><![CDATA[%s]]></ToUserName>
                 <FromUserName><![CDATA[%s]]></FromUserName>
-                <CreateTime>s%</CreateTime>
+                <CreateTime>%s</CreateTime>
                 <MsgType><![CDATA[news]]></MsgType>
-                <ArticleCount>s%</ArticleCount>
-                <Articles>s%</Articles>
+                <ArticleCount>%s</ArticleCount>
+                <Articles>%s</Articles>
                 </xml>";
         return sprintf($tpl, FROM_USER_NAME, TO_USER_NAME, time(), $articleCount, $items);
     }

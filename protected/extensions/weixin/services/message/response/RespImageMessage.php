@@ -13,10 +13,10 @@ class RespImageMessage extends BaseRespMessage
         $tpl = "<xml>
                 <ToUserName><![CDATA[%s]]></ToUserName>
                 <FromUserName><![CDATA[%s]]></FromUserName>
-                <CreateTime>s%</CreateTime>
+                <CreateTime>%s</CreateTime>
                 <MsgType><![CDATA[image]]></MsgType>
                 <Image>
-                <MediaId><![CDATA[s%]]></MediaId>
+                <MediaId><![CDATA[%s]]></MediaId>
                 </Image>
                 </xml>";
         return sprintf($tpl, FROM_USER_NAME, TO_USER_NAME, time(), $mediaId);

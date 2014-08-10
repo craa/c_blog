@@ -18,25 +18,25 @@ class TextMessage extends BaseReqMessage
                 array(
                     'title'=>'大图',
                     'description'=>'描述',
-                    'pic_url'=>'https://mmbiz.qlogo.cn/mmbiz/u7HRqqgV0kMwWIDPxJ2w3A9x1PeHxQ7DTvXiaOzibjfIsANYKrfFwFcC9xBXjdJTTCncFJXHXgtQTb40ibrvAiarrQ/0',
+                    'picurl'=>'https://mmbiz.qlogo.cn/mmbiz/u7HRqqgV0kMwWIDPxJ2w3A9x1PeHxQ7DTvXiaOzibjfIsANYKrfFwFcC9xBXjdJTTCncFJXHXgtQTb40ibrvAiarrQ/0',
                     'url'=>'http://m.jinfuzi.com'
                 ),
                 array(
                     'title'=>'大图',
                     'description'=>'描述',
-                    'pic_url'=>'https://mmbiz.qlogo.cn/mmbiz/u7HRqqgV0kNJKibRonH2d61Mu0KCZOmtMfTokg0RdIz2xdQ59an9YML5ibDibw2o5LSLIHff1Tv0W4iaCLU7uTmfhw/0',
+                    'picurl'=>'https://mmbiz.qlogo.cn/mmbiz/u7HRqqgV0kNJKibRonH2d61Mu0KCZOmtMfTokg0RdIz2xdQ59an9YML5ibDibw2o5LSLIHff1Tv0W4iaCLU7uTmfhw/0',
                     'url'=>'http://m.jinfuzi.com'
                 ),
                 array(
                     'title'=>'大图',
                     'description'=>'描述',
-                    'pic_url'=>'https://mmbiz.qlogo.cn/mmbiz/u7HRqqgV0kMwWIDPxJ2w3A9x1PeHxQ7DTvXiaOzibjfIsANYKrfFwFcC9xBXjdJTTCncFJXHXgtQTb40ibrvAiarrQ/0',
+                    'picurl'=>'https://mmbiz.qlogo.cn/mmbiz/u7HRqqgV0kMwWIDPxJ2w3A9x1PeHxQ7DTvXiaOzibjfIsANYKrfFwFcC9xBXjdJTTCncFJXHXgtQTb40ibrvAiarrQ/0',
                     'url'=>'http://m.jinfuzi.com'
                 ),
                 array(
                     'title'=>'大图',
                     'description'=>'描述',
-                    'pic_url'=>'https://mmbiz.qlogo.cn/mmbiz/u7HRqqgV0kMwWIDPxJ2w3A9x1PeHxQ7DTvXiaOzibjfIsANYKrfFwFcC9xBXjdJTTCncFJXHXgtQTb40ibrvAiarrQ/0',
+                    'picurl'=>'https://mmbiz.qlogo.cn/mmbiz/u7HRqqgV0kMwWIDPxJ2w3A9x1PeHxQ7DTvXiaOzibjfIsANYKrfFwFcC9xBXjdJTTCncFJXHXgtQTb40ibrvAiarrQ/0',
                     'url'=>'http://m.jinfuzi.com'
                 )
             ));

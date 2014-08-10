@@ -65,7 +65,7 @@ class RespMessage
 
     /**
      * 回复图文消息
-     * @param array，二维数组，图文消息不超过10条，每条消息包含 title/description/pic_url/url 四个元素
+     * @param array，二维数组，图文消息不超过10条，每条消息包含 title/description/picurl/url 四个元素
      */
     public static function replyNews($content)
     {
