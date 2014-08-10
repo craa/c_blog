@@ -1,5 +1,6 @@
 assets/*
 !assets/.gitignore
+upload/*
 protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
