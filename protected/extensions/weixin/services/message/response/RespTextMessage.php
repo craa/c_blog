@@ -8,11 +8,6 @@
 
 class RespTextMessage extends BaseRespMessage
 {
-    protected function init()
-    {
-
-    }
-
     public function getXML($content)
     {
         $tpl = "<xml>

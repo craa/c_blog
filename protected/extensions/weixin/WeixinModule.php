@@ -14,6 +14,7 @@ class WeixinModule extends CWebModule
 			'weixin.models.*',
 			'weixin.components.*',
             'weixin.services.*',
+            'weixin.services.message.base.*',
             'weixin.services.message.utils.*',
             'weixin.services.message.request.*',
             'weixin.services.message.response.*',

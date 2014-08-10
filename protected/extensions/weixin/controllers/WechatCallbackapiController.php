@@ -55,19 +55,25 @@ class WechatCallbackapiController extends CController
             switch($msg_type)
             {
                 case 'text':
-
-                case 'image':
-
-                case 'voice':
-
-                case 'video':
-
-                case 'location':
-
-                case 'link':
-
-                case 'event':
                     TextMessage::handle($postObj);
+                    break;
+                case 'image':
+                    ImageMessage::handle($postObj);
+                    break;
+                case 'voice':
+                    VoiceMessage::handle($postObj);
+                    break;
+                case 'video':
+                    VideoMessage::handle($postObj);
+                    break;
+                case 'location':
+                    LocationMessage::handle($postObj);
+                    break;
+                case 'link':
+                    LinkMessage::handle($postObj);
+                    break;
+                case 'event':
+                    EventMessage::handle($postObj);
                     break;
                 default:
                     echo '';
