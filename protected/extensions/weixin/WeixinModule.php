@@ -11,13 +11,13 @@ class WeixinModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'weixin.models.*',
-			'weixin.components.*',
-            'weixin.services.*',
-            'weixin.services.message.base.*',
-            'weixin.services.message.utils.*',
-            'weixin.services.message.request.*',
-            'weixin.services.message.response.*',
+			'ext.weixin.models.*',
+			'ext.weixin.components.*',
+            'ext.weixin.services.*',
+            'ext.weixin.services.message.base.*',
+            'ext.weixin.services.message.utils.*',
+            'ext.weixin.services.message.request.*',
+            'ext.weixin.services.message.response.*',
 		));
 	}
 
