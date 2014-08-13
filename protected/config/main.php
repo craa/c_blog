@@ -30,7 +30,6 @@ return array(
         'posts',
         'weixin'=>array(
             'class'=>'ext.weixin.WeixinModule',
-            'defaultController'=>'WechatCallbackapi',
             'token'=>'chenhongwei',
         ),
 

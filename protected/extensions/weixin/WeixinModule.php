@@ -4,6 +4,7 @@ class WeixinModule extends CWebModule
 {
     public $token = 'weixin';
     public $weixin_debug = true;
+    public $defaultController = 'WechatCallbackapi';
 	public function init()
 	{
 		// this method is called when the module is being created
