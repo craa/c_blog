@@ -18,14 +18,14 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-        $user = User::model()->find('LOWER(user_name)=:name', array(':name'=>strtolower($this->username)));
+        $user = Users::model()->find('LOWER(user_login)=:name', array(':name'=>strtolower($this->username)));
 		if(empty($user))
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		elseif(!$this->verifyPassword($this->password, $user->password))
+		elseif(!$this->verifyPassword($this->password, $user->user_pass))
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else{
-            $this->_id = $user->id;
-            $this->setState('user_name', $user->user_name);
+            $this->_id = $user->ID;
+            $this->setState('user_name', $user->user_nicename);
             $this->errorCode=self::ERROR_NONE;
         }
 

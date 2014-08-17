@@ -2,13 +2,14 @@
 
 class SiteController extends Controller
 {
+    public $layout = 'main';
     /**
      * @return array action filters
      */
     public function filters()
     {
         return array(
-            'accessControl', // perform access control for CRUD operations
+            //'accessControl', // perform access control for CRUD operations
         );
     }
 
@@ -53,17 +54,33 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-        if(!empty($_POST)){
-            var_dump($_POST);
+        $taxonomy = array(
+            'taxonomy'=>TermTaxonomy::$TAG,
+            'description'=>'分类测试',
+            'parent'=>0
+        );
+        $term = array(
+            'name'=>'前端',
+            'slug'=>'前端6',
+            'taxonomy'=>TermTaxonomy::$TAG
+        );
+        //var_dump(TermTaxonomy::deleteTag('Php'));
+        foreach(TermTaxonomy::getTagsByPostid(2) as $tag)
+        {
+            //$tag = $tag->taxonomy;
+            echo $tag->description,$tag->terms->term_id,$tag->terms->name,'<br>';
         }
-        $this->layout = 'main';
-        $this->render('index');
+        TermRelationships::buildRelationships(2,2,'前端,PHP,MYSQL5.7,LINUX,LAMP');
+        $articles = Posts::model()->getAllArticle();
+        Yii::app()->clientscript->registerCssFile('/static/css/site/blog.css');
+        $this->render('index', array('articles'=>$articles));
 	}
 
     public function actionLogin()
     {
         if(isset($_POST['password'])){
-            $identity = new UserIdentity('chen', $_POST['password']);
+            $password = $_POST['password'];
+            $identity = new UserIdentity('crains', $password);
             if($identity->authenticate() && Yii::app()->user->login($identity)){
                 if(Yii::app()->user->returnUrl)
                     $this->redirect(Yii::app()->user->returnUrl);

@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'ext.giix-components.*', // giix components
 	),
 
 	'modules'=>array(
@@ -23,6 +24,9 @@ return array(
 
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
+            'generatorPaths' => array(
+                'ext.giix-core', // giix generators
+            ),
 			'password'=>'cblog',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
@@ -64,11 +68,12 @@ return array(
 			'password' => '',
             'tablePrefix' => 'c_',
 			'charset' => 'utf8',
+            'enableProfiling'=>true,
 		),
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-			'errorAction'=>'site/error',
+			//'errorAction'=>'site/error',
 		),
 		'log'=>array(
 			'class'=>'CLogRouter',
@@ -78,11 +83,22 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
+                ####################调试sql可开启###################
+                array(
+                    'class'=>'CWebLogRoute',
+                    'levels'=>'error, warning, info',
+                ),
+                array(
+                    'class'=>'CProfileLogRoute',
+                    'levels'=>'trace',
+                    'categories'=>'system.db.*' //只显示关于数据库信息,包括数据库连接,数据库执行语句
+                ),
+                array(
+                    'class'=>'CWebLogRoute',
+                    'levels'=>'trace',
+                    'categories'=>'system.db.*' //只显示关于数据库信息,包括数据库连接,数据库执行语句
+                )
+
 			),
 		),
 	),

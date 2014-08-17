@@ -8,36 +8,28 @@
 ?>
 <?php $this->beginContent('//layouts/base'); ?>
 
-    <div role="banner" class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button data-target=".bs-navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle collapsed">
-                    <span class="sr-only"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/ueditor">UEditor Docs</a>
-            </div>
-            <nav role="navigation" class="navbar-collapse bs-navbar-collapse collapse" style="height: 1px;">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a target="_blank" href="http://ueditor.baidu.com/website/onlinedemo.html">演示</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="http://ueditor.baidu.com">官网</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://github.com/fex-team/ueditor/issues">论坛</a>
-                    </li>
-                </ul>
-            </nav>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="pull-left">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="/">首页</a></li>
+                <li><a href="/">前端</a></li>
+            </ul>
         </div>
     </div>
+</nav>
 
 
 <div class="container">
     <?php echo $content; ?>
 </div>
+
+<footer>
+    <div class="container">
+        <p class="text-center">
+            &copy;Copyright 2014 cra
+        </p>
+    </div>
+</footer>
 
 <?php $this->endContent(); ?>

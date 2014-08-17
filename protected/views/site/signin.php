@@ -1,4 +1,4 @@
-<div class="container">
+<div class="main-container">
 
 <form id="welcome_home" class="form-signin" role="form" action="<?php echo Yii::app()->user->loginUrl[0]; ?>" method="post">
     <input class="form-control" type="password" autofocus="" required="" name="password" />
