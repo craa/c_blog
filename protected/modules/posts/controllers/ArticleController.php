@@ -44,6 +44,7 @@ class ArticleController extends CController
         $article = Posts::model()->findByPk($id);
         if(empty($article))
             throw new CHttpException('404', '文章不存在');
+        $this->pageTitle = $article->post_title.'-cra';
         $this->render('article_detail', array('article'=>$article));
     }
 

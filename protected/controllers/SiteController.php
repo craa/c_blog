@@ -2,6 +2,7 @@
 
 class SiteController extends Controller
 {
+    public $pageTitle = 'cra';
     public $layout = 'main';
     /**
      * @return array action filters
