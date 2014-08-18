@@ -94,7 +94,7 @@ class TermTaxonomy extends BaseTermTaxonomy
         $category = self::model()->with('terms')->find('name="未分类"');
         if(empty($category)){
             $taxonomy = self::getTaxonomyData(self::$CATEGORY, '没有分类的类型', '未分类');
-            $category = self::addTaxotomy($taxonomy);
+            $category = self::addTaxonomy($taxonomy);
         }
         return $category;
     }
