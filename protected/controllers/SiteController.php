@@ -54,26 +54,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-        $taxonomy = array(
-            'taxonomy'=>TermTaxonomy::$TAG,
-            'description'=>'分类测试',
-            'parent'=>0
-        );
-        $term = array(
-            'name'=>'前端',
-            'slug'=>'前端6',
-            'taxonomy'=>TermTaxonomy::$TAG
-        );
-        //var_dump(TermTaxonomy::deleteTag('Php'));
-//        foreach(TermTaxonomy::getAllTags() as $tag)
-//        {
-//
-//            echo $tag->terms->name,',',$tag->relationCount,'<br>';
-//            //echo $tag->description,$tag->terms->term_id,$tag->terms->name,'<br>';
-//        }
-        TermRelationships::buildRelationships(2,2,'前端,PHP,MYSQL5.7,LINUX,LAMP');
         $articles = Posts::model()->getAllArticle();
-        $this->render('index', array('articles'=>$articles, 'tags'=>TermTaxonomy::getAllTags()));
+        $this->render('index', array('articles'=>$articles));
 	}
 
     public function actionLogin()
