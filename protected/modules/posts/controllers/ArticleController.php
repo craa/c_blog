@@ -27,6 +27,11 @@ class ArticleController extends CController
     public function accessRules()
     {
         return array(
+            array(
+                'allow',
+                'actions'=>array('detail'),
+                'users'=>array('*'),
+            ),
             array('allow', // allow authenticated users to access all actions
                 'users'=>array('@'),
             ),
@@ -75,9 +80,12 @@ class ArticleController extends CController
             $articleInfo['post_author'] = Yii::app()->user->id;
             $articleInfo['post_date'] = date('Y-m-d H:i:s');
             $articleInfo['post_date_gmt'] = date('Y-m-d H:i:s');
+            $articleInfo['to_ping'] = 'to_ping';
+            $articleInfo['pinged'] = 'pinged';
+            $articleInfo['post_content_filtered'] = 'filtered';
         }
         $article->attributes = $articleInfo;
-        $result = $article->save(false);
+        $result = $article->save(true);
         if($result){
             TermRelationships::buildRelationships($article->primaryKey, $articleInfo['category_id'], $articleInfo['tags']);
             echo $result;
