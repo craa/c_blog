@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.components.widgets.*', //小部件
         'ext.giix-components.*', // giix components
 	),
 
@@ -52,7 +53,7 @@ return array(
 			'showScriptName'=>false,
 			'urlSuffix'=>'.html',
 			'rules'=>array(
-
+                '/a<id:\d+>'=>'/posts/article/detail',
 			),
 		),
         /*

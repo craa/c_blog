@@ -13,7 +13,11 @@
         <div class="pull-left">
             <ul class="nav nav-pills">
                 <li class="active"><a href="/">首页</a></li>
-                <li><a href="/">前端</a></li>
+                <?php foreach(TermTaxonomy::getAllCategories() as $category): ?>
+                    <?php if($category->terms->name != '未分类'): ?>
+                    <li><a href="/"><?php echo $category->terms->name; ?></a></li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>

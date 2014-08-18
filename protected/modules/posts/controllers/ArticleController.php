@@ -7,7 +7,7 @@
 
 class ArticleController extends CController
 {
-    public $layout = '//layouts/base';
+    public $layout = '//layouts/main';
     public $pageTitle = '文章编辑';
     /**
      * @return array action filters
@@ -37,11 +37,23 @@ class ArticleController extends CController
     }
 
     /**
+     * 文章详情
+     */
+    public function actionDetail($id)
+    {
+        $article = Posts::model()->findByPk($id);
+        if(empty($article))
+            throw new CHttpException('404', '文章不存在');
+        $this->render('article_detail', array('article'=>$article));
+    }
+
+    /**
      * 编辑页面
      */
-    public function actionIndex()
+    public function actionCreate()
     {
-        $this->render('article_index');
+        $categories = TermTaxonomy::getAllCategories();
+        $this->render('article_create', array('categories'=>$categories));
     }
 
     /**
@@ -65,9 +77,10 @@ class ArticleController extends CController
         }
         $article->attributes = $articleInfo;
         $result = $article->save(false);
-        if($result)
+        if($result){
+            TermRelationships::buildRelationships($article->primaryKey, $articleInfo['category_id'], $articleInfo['tags']);
             echo $result;
-        else{
+        }else{
             echo 'failed!';
             var_dump($article->errors);
         }

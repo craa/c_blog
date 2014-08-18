@@ -65,15 +65,15 @@ class SiteController extends Controller
             'taxonomy'=>TermTaxonomy::$TAG
         );
         //var_dump(TermTaxonomy::deleteTag('Php'));
-        foreach(TermTaxonomy::getTagsByPostid(2) as $tag)
-        {
-            //$tag = $tag->taxonomy;
-            echo $tag->description,$tag->terms->term_id,$tag->terms->name,'<br>';
-        }
+//        foreach(TermTaxonomy::getAllTags() as $tag)
+//        {
+//
+//            echo $tag->terms->name,',',$tag->relationCount,'<br>';
+//            //echo $tag->description,$tag->terms->term_id,$tag->terms->name,'<br>';
+//        }
         TermRelationships::buildRelationships(2,2,'前端,PHP,MYSQL5.7,LINUX,LAMP');
         $articles = Posts::model()->getAllArticle();
-        Yii::app()->clientscript->registerCssFile('/static/css/site/blog.css');
-        $this->render('index', array('articles'=>$articles));
+        $this->render('index', array('articles'=>$articles, 'tags'=>TermTaxonomy::getAllTags()));
 	}
 
     public function actionLogin()

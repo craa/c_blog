@@ -15,6 +15,7 @@ class TermTaxonomy extends BaseTermTaxonomy
         return array(
             'terms'=>array(self::BELONGS_TO, 'Terms', 'term_id'),
             'relation'=>array(self::HAS_MANY, 'TermRelationships', 'term_taxonomy_id'),
+            'relationCount'=>array(self::STAT, 'TermRelationships', 'term_taxonomy_id'),
         );
     }
 
