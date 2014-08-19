@@ -6,6 +6,8 @@ class TermTaxonomy extends BaseTermTaxonomy
 {
     public static $TAG = 'post_tag';
     public static $CATEGORY = 'category';
+    public static $bootstrap_tag_styles = array('label-default','label-primary','label-success','label-info','label-warning','label-danger');
+
 	public static function model($className=__CLASS__) {
 		return parent::model($className);
 	}
@@ -108,6 +110,19 @@ class TermTaxonomy extends BaseTermTaxonomy
     }
 
     /**
+     * 获取指定文章的分类
+     */
+    public static function getCategoryByPostid($post_id)
+    {
+        $category = self::model()->with('relation')->find('taxonomy=:taxonomy AND object_id=:o_id', array(':taxonomy'=>TermTaxonomy::$CATEGORY, ':o_id'=>$post_id));
+        if(!empty($category)){
+            return $category->terms->name;
+        }else{
+            return false;
+        }
+    }
+
+    /**
      * 删除指定标签
      */
     public static function deleteTag($name)
@@ -131,5 +146,13 @@ class TermTaxonomy extends BaseTermTaxonomy
             }
         }
         return $ret;
+    }
+
+    /**
+     * 获取标签的随机样式
+     */
+    public static function getRandomStyleOfTag()
+    {
+        return self::$bootstrap_tag_styles[rand(0,5)];
     }
 }

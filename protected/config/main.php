@@ -18,6 +18,7 @@ return array(
 		'application.components.*',
         'application.components.widgets.*', //小部件
         'ext.giix-components.*', // giix components
+        'ext.ueditor.*',//ueditor插件
 	),
 
 	'modules'=>array(

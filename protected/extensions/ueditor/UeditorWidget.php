@@ -31,7 +31,7 @@ class UeditorWidget extends CWidget
     public static function getAssetUrl()
     {
         if(self::$ueditor_souce_url === null)
-            self::$ueditor_souce_url = Yii::app()->getAssetManager()->publish(dirname(__FILE__).DIRECTORY_SEPARATOR.'ueditor1_4_3-utf8-php');
+            return self::$ueditor_souce_url = Yii::app()->getAssetManager()->publish(dirname(__FILE__).DIRECTORY_SEPARATOR.'ueditor1_4_3-utf8-php');
         else
             return self::$ueditor_souce_url;
     }
@@ -49,5 +49,13 @@ class UeditorWidget extends CWidget
                 $cs->registerScriptFile($public_path);
             }
         }
+    }
+
+    public static function renderParseScript($selector)
+    {
+        $parseScriptPath = self::getAssetUrl();
+        $ret = "<script src='$parseScriptPath/ueditor.parse.min.js'></script>".
+                "<script>uParse('$selector',{rootPath: '$parseScriptPath'});</script>";
+        echo $ret;
     }
 }

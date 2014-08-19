@@ -25,3 +25,5 @@
         <?php $this->widget('TagWidget'); ?>
     </div>
 </div>
+
+<?php UeditorWidget::renderParseScript('.article-content'); ?>
