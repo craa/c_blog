@@ -26,4 +26,7 @@
     </div>
 </div>
 
-<?php UeditorWidget::renderParseScript('.article-content'); ?>
+<?php $this->widget('ext.ueditor.UeditorParseWidget', array(
+            'selector'=>'.article-content', //必选* 要渲染位置的选择器
+            'sh_theme'=>'Default', //可选 语法高亮的主题{Default,Django,Eclipse,Emacs,FadeToGrey,MDUltra,Midnight,RDark}
+));

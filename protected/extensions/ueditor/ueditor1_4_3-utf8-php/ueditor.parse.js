@@ -8,6 +8,11 @@
 
 (function(){
     UE = window.UE || {};
+	//语法高亮设置
+	UE.sh_config = {
+		sh_js : "shCore.min.js",
+		sh_theme : "Default"
+	};
     var isIE = !!window.ActiveXObject;
     //定义utils工具
     var utils = {
@@ -340,8 +345,8 @@ UE.parse.register('insertcode',function(utils){
         if(typeof XRegExp == "undefined"){
             var jsurl,cssurl;
             if(this.rootPath !== undefined){
-                jsurl = utils.removeLastbs(this.rootPath)  + '/third-party/SyntaxHighlighter/shCore.js';
-                cssurl = utils.removeLastbs(this.rootPath) + '/third-party/SyntaxHighlighter/shCoreDefault.css';
+                jsurl = utils.removeLastbs(this.rootPath)  + '/third-party/SyntaxHighlighter/'+UE.sh_config.sh_js;
+                cssurl = utils.removeLastbs(this.rootPath) + '/third-party/SyntaxHighlighter/shCore'+UE.sh_config.sh_theme+'.min.css';
             }else{
                 jsurl = this.highlightJsUrl;
                 cssurl = this.highlightCssUrl;

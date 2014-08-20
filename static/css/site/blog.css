@@ -27,6 +27,3 @@ footer p {
 .article-content .container:before, .article-content .container:after {
     display: block;
 }
-.article-content textarea{
-    height: 100%;
-}

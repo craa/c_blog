@@ -50,6 +50,11 @@ class ArticleController extends CController
         if(empty($article))
             throw new CHttpException('404', '文章不存在');
         $this->pageTitle = $article->post_title.'-cra';
+//        Yii::app()->clientscript->registerCssFile('/assets/highlight/styles/shCoreDefault.css');
+//        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shCore.js');
+//        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushPhp.js');
+//        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushBash.js');
+//        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushJScript.js');
         $this->render('article_detail', array('article'=>$article));
     }
 

@@ -54,8 +54,8 @@ class UeditorWidget extends CWidget
     public static function renderParseScript($selector)
     {
         $parseScriptPath = self::getAssetUrl();
-        $ret = "<script src='$parseScriptPath/ueditor.parse.min.js'></script>".
-                "<script>uParse('$selector',{rootPath: '$parseScriptPath'});</script>";
+        $ret = "<script src='$parseScriptPath/ueditor.parse.js'></script>".
+                "<script>UE.sh_config.sh_theme='Midnight';uParse('$selector',{rootPath: '$parseScriptPath'});</script>";
         echo $ret;
     }
 }
