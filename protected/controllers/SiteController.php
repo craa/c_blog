@@ -55,6 +55,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+        echo Yii::app()->cache->get('a');
         $articles = Posts::model()->getAllArticle();
         $this->render('index', array('articles'=>$articles));
 	}

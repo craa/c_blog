@@ -16,7 +16,7 @@ class UeditorParseWidget extends CWidget
     public function init()
     {
         $this->path = Yii::app()->getAssetManager()->publish(dirname(__FILE__).DIRECTORY_SEPARATOR.'ueditor1_4_3-utf8-php');
-        Yii::app()->clientscript->registerScriptFile($this->path.'/ueditor.parse.min.js');
+        Yii::app()->clientscript->registerScriptFile($this->path.'/ueditor.parse.min.js', CClientScript::POS_BEGIN);
     }
 
     public function run()

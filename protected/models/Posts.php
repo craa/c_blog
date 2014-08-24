@@ -17,6 +17,6 @@ class Posts extends BasePosts
         $criteria->condition = 'post_status = "publish"';
         $criteria->order = 'post_date DESC';
 
-        return $this->findAll($criteria);
+        return $this->cache(3600)->findAll($criteria);
     }
 }

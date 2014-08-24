@@ -42,7 +42,7 @@ class TermTaxonomy extends BaseTermTaxonomy
      */
     public static function getAllCategories()
     {
-        return self::model()->findAll("taxonomy='category'");
+        return self::model()->with('terms','relation')->cache(3600)->findAll("taxonomy='category'");
     }
 
     /**
@@ -50,11 +50,12 @@ class TermTaxonomy extends BaseTermTaxonomy
      */
     public static function getAllTags()
     {
-        return self::model()->findAll("taxonomy='post_tag'");
+        return self::model()->with('terms','relation','relationCount')->cache(3600)->findAll("taxonomy='post_tag'");
     }
 
     /**
      * 添加分类或者标签
+     * @param $taxonomy 参见 self::getTaxonomyData($taxonomy, $description, $name)
      */
     public static function addTaxonomy($taxonomy)
     {
@@ -91,9 +92,12 @@ class TermTaxonomy extends BaseTermTaxonomy
         return $this->save(false);
     }
 
+    /**
+     * 获取分类名为未分类的类
+     */
     public static function getUncategory()
     {
-        $category = self::model()->with('terms')->find('name="未分类"');
+        $category = self::model()->with('terms','relation')->find('name="未分类"');
         if(empty($category)){
             $taxonomy = self::getTaxonomyData(self::$CATEGORY, '没有分类的类型', '未分类');
             $category = self::addTaxonomy($taxonomy);
@@ -106,7 +110,7 @@ class TermTaxonomy extends BaseTermTaxonomy
      */
     public static function getTagsByPostid($post_id)
     {
-        return self::model()->with('relation')->findAll('t.taxonomy=:taxonomy AND object_id=:o_id', array(':taxonomy'=>TermTaxonomy::$TAG, ':o_id'=>$post_id));
+        return self::model()->with('terms','relation')->cache(3600)->findAll('t.taxonomy=:taxonomy AND object_id=:o_id', array(':taxonomy'=>TermTaxonomy::$TAG, ':o_id'=>$post_id));
     }
 
     /**
@@ -114,12 +118,41 @@ class TermTaxonomy extends BaseTermTaxonomy
      */
     public static function getCategoryByPostid($post_id)
     {
-        $category = self::model()->with('relation')->find('taxonomy=:taxonomy AND object_id=:o_id', array(':taxonomy'=>TermTaxonomy::$CATEGORY, ':o_id'=>$post_id));
+        $category = self::model()->with('terms','relation')->cache(3600)->find('taxonomy=:taxonomy AND object_id=:o_id', array(':taxonomy'=>TermTaxonomy::$CATEGORY, ':o_id'=>$post_id));
         if(!empty($category)){
             return $category->terms->name;
         }else{
             return false;
         }
+    }
+
+    /**
+     * 删除指定分类
+     */
+    public static function deleteCategory($term_taxonomy_id)
+    {
+        $taxonomy = self::model()->with('terms')->findByPk($term_taxonomy_id);
+        if(!empty($taxonomy)){
+            $transaction=Yii::app()->db->beginTransaction();
+            try{
+                $taxonomy->delete();
+                $taxonomy->terms->delete();
+                $uncategory = self::getUncategory();
+                foreach($taxonomy->relation as $relation)
+                {
+                    $relation->term_taxonomy_id = $uncategory->term_taxonomy_id;
+                    $relation->save(false);
+                }
+                $transaction->commit();
+            }catch(Exception $e){
+                $transaction->rollBack();
+                return false;
+            }
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     /**
@@ -140,7 +173,6 @@ class TermTaxonomy extends BaseTermTaxonomy
                 $taxonomy->delete();
                 $transaction->commit();//提交事务会真正的执行数据库操作
             } catch(Exception $e){
-                echo 'aaaaaaaa';
                 $transaction->rollBack();
                 $ret = false;
             }
@@ -154,5 +186,28 @@ class TermTaxonomy extends BaseTermTaxonomy
     public static function getRandomStyleOfTag()
     {
         return self::$bootstrap_tag_styles[rand(0,5)];
+    }
+
+    /**
+     * 更新分类或者标签的数据
+     */
+    public static function updateTaxonomy($id, $name, $description)
+    {
+        $ret = true;
+        $taxonomy = self::model()->with('terms')->findByPk($id);
+        if($taxonomy->description != $description){
+            $taxonomy->description = $description;
+            if(!$taxonomy->save(false)){
+                $ret = false;
+            }
+        }
+        if($taxonomy->terms->name != $name){
+            $taxonomy->terms->name = $name;
+            $taxonomy->terms->slug = $taxonomy->taxonomy.'-'.$name;
+            if(!$taxonomy->terms->save(false)){
+                $ret = false;
+            }
+        }
+        return $ret;
     }
 }

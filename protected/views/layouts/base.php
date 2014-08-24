@@ -19,9 +19,7 @@
     <![endif]-->
 </head>
 <body>
-
 <?php echo $content; ?>
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<?php echo Yii::app()->baseUrl; ?>/static/common/jquery-1.11.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

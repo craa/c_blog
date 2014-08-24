@@ -34,6 +34,7 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
         'posts',
+        'Uconsole',
         'weixin'=>array(
             'class'=>'ext.weixin.WeixinModule',
             'token'=>'chenhongwei',
@@ -54,7 +55,10 @@ return array(
 			'showScriptName'=>false,
 			'urlSuffix'=>'.html',
 			'rules'=>array(
-                '/a<id:\d+>'=>'/posts/article/detail',
+                'a<id:\d+>'=>'posts/article/detail',
+                'universe'=>'Uconsole/console/index',
+                //'Uconsole/*'=>'site/index',
+                //'universe/<controller:\w+>/<action:\w+>'=>'Uconsole/<controller>/<action>',
 			),
 		),
         /*
@@ -103,7 +107,15 @@ return array(
 
 			),
 		),
-	),
+        'cache'=>array(
+            'class'=>'system.caching.CDummyCache',
+            //'class'=>'system.caching.CFileCache',
+//            'class'=>'system.caching.CMemCache',
+//            'servers'=>array(
+//                array('host'=>'localhost', 'port'=>11211, 'weight'=>100),
+//            ),
+        ),
+    ),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']

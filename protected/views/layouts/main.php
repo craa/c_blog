@@ -27,7 +27,6 @@
 <div class="container">
     <?php echo $content; ?>
 </div>
-
 <footer>
     <div class="container">
         <p class="text-center">
@@ -35,5 +34,4 @@
         </p>
     </div>
 </footer>
-
 <?php $this->endContent(); ?>

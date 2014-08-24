@@ -27,3 +27,8 @@ footer p {
 .article-content .container:before, .article-content .container:after {
     display: block;
 }
+
+/*文章图片宽度限制*/
+.article-content img{
+    max-width: 100%;
+}

@@ -46,7 +46,7 @@ class ArticleController extends CController
      */
     public function actionDetail($id)
     {
-        $article = Posts::model()->findByPk($id);
+        $article = Posts::model()->cache(3600)->findByPk($id);
         if(empty($article))
             throw new CHttpException('404', '文章不存在');
         $this->pageTitle = $article->post_title.'-cra';
@@ -64,7 +64,7 @@ class ArticleController extends CController
     public function actionCreate()
     {
         $categories = TermTaxonomy::getAllCategories();
-        $this->render('article_create', array('categories'=>$categories));
+        $this->renderPartial('article_create', array('categories'=>$categories));
     }
 
     /**

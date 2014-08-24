@@ -11,6 +11,7 @@ class UeditorWidget extends CWidget
     public $content = '';
     public $id = 'container';
     public $input_name ="content";
+    public $script_only = false;
     protected static $ueditor_souce_url;
 
     public function init()
@@ -20,12 +21,14 @@ class UeditorWidget extends CWidget
 
     public function run()
     {
-        $params = array('content' => $this->content,
-                        'source_url' => self::$ueditor_souce_url,
-                        'id' => $this->id,
-                        'input_name' => $this->input_name,
-        );
-        $this->render('index', $params);
+        if(!$this->script_only){
+            $params = array('content' => $this->content,
+                'source_url' => self::$ueditor_souce_url,
+                'id' => $this->id,
+                'input_name' => $this->input_name,
+            );
+            $this->render('index', $params);
+        }
     }
 
     public static function getAssetUrl()
@@ -51,11 +54,4 @@ class UeditorWidget extends CWidget
         }
     }
 
-    public static function renderParseScript($selector)
-    {
-        $parseScriptPath = self::getAssetUrl();
-        $ret = "<script src='$parseScriptPath/ueditor.parse.js'></script>".
-                "<script>UE.sh_config.sh_theme='Midnight';uParse('$selector',{rootPath: '$parseScriptPath'});</script>";
-        echo $ret;
-    }
 }
