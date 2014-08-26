@@ -53,11 +53,9 @@ class SiteController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	public function actionIndex()
+	public function actionIndex($page = 0)
 	{
-        echo Yii::app()->cache->get('a');
-        $articles = Posts::model()->getAllArticle();
-        $this->render('index', array('articles'=>$articles));
+
 	}
 
     public function actionLogin()

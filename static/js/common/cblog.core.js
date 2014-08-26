@@ -40,10 +40,25 @@ var CBlog = function () {
     };
 
     this.AJAX.success = function (data, status) {
-        if (!exsit(data.message)) {
-            data = JSON.parse(data);
+        try{
+            if (!exsit(data.message)) {
+                data = JSON.parse(data);
+            }
+            if(typeof(data.message) == "object"){
+                var tmp_str = '';
+                $.each(data.message, function(k,v){
+                    tmp_str += k+':'+v+"\n";
+                });
+                alert(tmp_str);
+            }else if(typeof(data.message) == "string"){
+                alert(data.message);
+            }else{
+                alert('服务器返回：'+data);
+            }
+            return data.status;
+        }catch (e){
+            alert(e.message);
         }
-        alert(data.message);
     };
 
     this.AJAX.error = function (XMLHttpRequest, textStatus, errorThrown) {

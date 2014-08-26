@@ -12,6 +12,7 @@ class TermRelationships extends BaseTermRelationships
     {
         return array(
             'taxonomy'=>array(self::BELONGS_TO, 'TermTaxonomy', 'term_taxonomy_id'),
+            //'category'=>array(self::BELONGS_TO, 'TermTaxonomy', 'term_taxonomy_id', 'select'=>'category.term_taxonomy_id', 'on'=>'category.taxonomy = "category"'),
         );
     }
 

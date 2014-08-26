@@ -15,5 +15,8 @@
 
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-    var ue = UE.getEditor('<?php echo $id; ?>', {serverUrl:"<?php echo Yii::app()->baseUrl; ?>/ueditor"});
+        //ajax处理时，先将相同id的编辑器实例删除
+        UE.delEditor('<?php echo $id; ?>');
+        var ue = UE.getEditor('<?php echo $id; ?>', {serverUrl:"<?php echo Yii::app()->baseUrl; ?>/ueditor"});
+
 </script>

@@ -7,7 +7,7 @@
 ?>
 
 <div class="container">
-    <form action="<?php echo $this->createUrl('/posts/article/storage'); ?>" method="post" class="form-horizontal" role="form">
+    <form id="post-add-form" action="<?php echo $this->createUrl('/Uconsole/post/ajaxstorage'); ?>" method="post" class="form-horizontal" role="form">
         <div class="form-group">
             <label >标题</label>
             <input type="text" name="article[post_title]" class="form-control" placeholder="文章标题">
@@ -52,8 +52,22 @@
             <?php $this->widget('ext.ueditor.UeditorWidget', array('content' => '', 'id'=>'ueditor', 'input_name'=>'article[post_content]')); ?>
         </div>
 
-
-
-        <input type="submit" class="btn btn-primary" value="提交">
+        <input type="submit" class="btn btn-primary post-submit-btn" value="提交">
     </form>
 </div>
+
+<script>
+    //提交表单
+    $(".post-submit-btn").click(function(){
+        CBLOG.AJAX.post({
+            url:$("#post-add-form").attr("action"),
+            data:$("#post-add-form").serialize(),
+            success:function(data){
+                status = CBLOG.AJAX.success(data);
+                if(status == "true")
+                    $("#menu-item-article").click();
+            }
+        });
+        return false;
+    });
+</script>

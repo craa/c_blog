@@ -13,10 +13,12 @@
                 <h3 class="panel-title">文章管理</h3>
             </div>
             <div class="panel-body">
-                <button type="button" class="btn btn-default start-menu-item" data-url="posts/article/create">文章</button>
-                <button type="button" class="btn btn-default start-menu-item" id="menu-item-category" data-url="<?php echo $this->createUrl('/Uconsole/category/list'); ?>">分类</button>
-                <button type="button" class="btn btn-default">新建文章</button>
-                <button type="button" class="btn btn-default">新建文章</button>
+                <ul class="list-inline">
+                    <li class="btn btn-success start-menu-item" id="menu-item-article" data-url="/Uconsole/post/list">文章</li>
+                    <li class="btn btn-success start-menu-item" id="menu-item-category" data-url="<?php echo $this->createUrl('/Uconsole/category/list'); ?>">分类</li>
+                    <li class="btn btn-success start-menu-item" id="menu-item-tag" data-url="<?php echo $this->createUrl('/Uconsole/tag/list'); ?>">标签</li>
+                    <li class="btn btn-success">新建文章</li>
+                </ul>
             </div>
         </div>
     </div>

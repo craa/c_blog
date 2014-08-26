@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'宏伟的宏',
-
+    'defaultController'=>'posts/article',
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -55,7 +55,9 @@ return array(
 			'showScriptName'=>false,
 			'urlSuffix'=>'.html',
 			'rules'=>array(
-                'a<id:\d+>'=>'posts/article/detail',
+                'article-<id:\d+>'=>'posts/article/detail',
+                'article-list-<page:\d+>'=>'posts/article/list',
+                'article-list'=>'posts/article/list',
                 'universe'=>'Uconsole/console/index',
                 //'Uconsole/*'=>'site/index',
                 //'universe/<controller:\w+>/<action:\w+>'=>'Uconsole/<controller>/<action>',

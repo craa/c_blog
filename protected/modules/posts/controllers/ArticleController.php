@@ -8,7 +8,8 @@
 class ArticleController extends CController
 {
     public $layout = '//layouts/main';
-    public $pageTitle = '文章编辑';
+    public $pageTitle = '文章';
+    public $defaultAction='list';
     /**
      * @return array action filters
      */
@@ -29,7 +30,7 @@ class ArticleController extends CController
         return array(
             array(
                 'allow',
-                'actions'=>array('detail'),
+                'actions'=>array('detail','list'),
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated users to access all actions
@@ -39,6 +40,24 @@ class ArticleController extends CController
                 'users'=>array('*'),
             ),
         );
+    }
+
+    /**
+     * 文章列表
+     */
+    public function actionList($page = 1)
+    {
+        $criteria = new CDbCriteria;
+        $criteria->order = 'ID DESC';
+        $count = Posts::model()->cache(3600)->count($criteria);
+        $pages = new CPagination($count);
+        $pages->currentPage = $page - 1;
+        $pages->pageSize = Posts::$PAGE_SIZE;
+        $pages->applyLimit($criteria);
+        $articles = Posts::model()->findAll($criteria);
+
+
+        $this->render('list', array('articles'=>$articles, 'pages'=>$pages));
     }
 
     /**
@@ -55,51 +74,6 @@ class ArticleController extends CController
 //        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushPhp.js');
 //        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushBash.js');
 //        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushJScript.js');
-        $this->render('article_detail', array('article'=>$article));
-    }
-
-    /**
-     * 编辑页面
-     */
-    public function actionCreate()
-    {
-        $categories = TermTaxonomy::getAllCategories();
-        $this->renderPartial('article_create', array('categories'=>$categories));
-    }
-
-    /**
-     * 处理post数据
-     */
-    public function actionStorage($id = 0)
-    {
-        if(!isset($_POST['article'])){
-            throw new CHttpException('404', '参数不正确');
-        }
-        $articleInfo = $_POST['article'];
-        $article = Posts::model()->findByPk($id);
-        if(!empty($article)){
-            $articleInfo['post_modified'] = date('Y-m-d H:i:s');
-            $articleInfo['post_modified_gmt'] = date('Y-m-d H:i:s');
-        }else{
-            $article = new Posts();
-            $articleInfo['post_author'] = Yii::app()->user->id;
-            $articleInfo['post_date'] = date('Y-m-d H:i:s');
-            $articleInfo['post_date_gmt'] = date('Y-m-d H:i:s');
-            $articleInfo['to_ping'] = 'to_ping';
-            $articleInfo['pinged'] = 'pinged';
-            $articleInfo['post_content_filtered'] = 'filtered';
-        }
-        $article->attributes = $articleInfo;
-        $result = $article->save(true);
-        if($result){
-            TermRelationships::buildRelationships($article->primaryKey, $articleInfo['category_id'], $articleInfo['tags']);
-            echo $result;
-        }else{
-            echo 'failed!';
-            var_dump($article->errors);
-        }
-
-
-
+        $this->render('detail', array('article'=>$article));
     }
 }

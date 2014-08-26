@@ -1,11 +1,11 @@
 <?php
 /**
  * Author: chenhongwei
- * Date: 14-8-24 18:19
+ * Date: 14-8-25 21:27
  * Description:
  */
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * @return array action filters
@@ -37,42 +37,22 @@ class CategoryController extends Controller
     //分类列表
     public function actionList()
     {
-        $categories = TermTaxonomy::getAllCategories();
-        $this->renderPartial('list',array('categories'=>$categories));
-    }
-
-    //添加分类表单
-    public function actionAdd()
-    {
-        $this->renderPartial('add');
+        $tags = TermTaxonomy::getAllTags();
+        $this->renderPartial('list',array('tags'=>$tags));
     }
 
     //修改分类表单
     public function actionUpdate()
     {
         $id = $_POST['id'];
-        $category = TermTaxonomy::model()->findByPk($id);
-        $this->renderPartial('update', array('category'=>$category));
-    }
-
-    public function actionAjaxAdd()
-    {
-        $description = $_POST['description'];
-        $name = $_POST['name'];
-        $taxonomy_type = 'category';
-        if(isset($description) && isset($name)){
-            $taxonomy = TermTaxonomy::getTaxonomyData($taxonomy_type, $description, $name);
-            $result = TermTaxonomy::addTaxonomy($taxonomy);
-            echo AjaxResponse::replyJSON(true, '成功');
-        }else{
-            echo AjaxResponse::replyJSON(false, '参数不对');
-        }
+        $tag = TermTaxonomy::model()->findByPk($id);
+        $this->renderPartial('update', array('tag'=>$tag));
     }
 
     public function actionAjaxDelete()
     {
         $id = $_POST['id'];
-        if(TermTaxonomy::deleteCategory($id)){
+        if(TermTaxonomy::deleteTag($id)){
             echo AjaxResponse::replyJSON(true, '删除成功');
         }else{
             echo AjaxResponse::replyJSON(false, '删除失败');

@@ -114,16 +114,26 @@ class TermTaxonomy extends BaseTermTaxonomy
     }
 
     /**
+     * 获取文章的标签并转为字符串
+     */
+    public static function getTagsAsStringByPostid($post_id)
+    {
+        $tags = self::getTagsByPostid($post_id);
+        $ret = array();
+        foreach($tags as $tag)
+        {
+            $ret[] = $tag->terms->name;
+        }
+        return implode(', ', $ret);
+    }
+
+    /**
      * 获取指定文章的分类
      */
     public static function getCategoryByPostid($post_id)
     {
-        $category = self::model()->with('terms','relation')->cache(3600)->find('taxonomy=:taxonomy AND object_id=:o_id', array(':taxonomy'=>TermTaxonomy::$CATEGORY, ':o_id'=>$post_id));
-        if(!empty($category)){
-            return $category->terms->name;
-        }else{
-            return false;
-        }
+        $category = self::model()->with('terms','relation')->find('taxonomy=:taxonomy AND object_id=:o_id', array(':taxonomy'=>TermTaxonomy::$CATEGORY, ':o_id'=>$post_id));
+        return $category;
     }
 
     /**
