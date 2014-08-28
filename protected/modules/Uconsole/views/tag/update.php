@@ -9,22 +9,26 @@
     <?php if(!empty($tag)): ?>
     <form id="tag-update-form" action="<?php echo $this->createUrl('/Uconsole/tag/ajaxupdate'); ?>" method="post" class="form-horizontal" role="form">
         <div class="form-group">
-            <label >分类ID</label>
-            <input type="text" name="id" class="form-control" readonly value="<?php echo $tag->term_taxonomy_id; ?>" placeholder="分类ID">
+            <label >标签ID</label>
+            <input type="text" name="id" class="form-control" readonly value="<?php echo $tag->term_taxonomy_id; ?>" placeholder="标签ID">
         </div>
         <div class="form-group">
-            <label >分类名称</label>
-            <input type="text" name="name" class="form-control" value="<?php echo $tag->terms->name; ?>" placeholder="分类名称">
+            <label >标签名称</label>
+            <input type="text" name="name" class="form-control" value="<?php echo $tag->terms->name; ?>" placeholder="标签名称">
         </div>
         <div class="form-group">
-            <label >分类描述</label>
-            <input type="text" name="description" class="form-control" value="<?php echo $tag->description; ?>" placeholder="分类描述">
+            <label >slug</label>
+            <input type="text" name="slug" class="form-control" value="<?php echo $tag->terms->slug; ?>" placeholder="slug">
+        </div>
+        <div class="form-group">
+            <label >标签描述</label>
+            <input type="text" name="description" class="form-control" value="<?php echo $tag->description; ?>" placeholder="标签描述">
         </div>
 
         <button id="tag-update-submit" class="btn btn-primary">提交</button>
     </form>
     <?php else: ?>
-    分类不存在！
+    标签不存在！
     <?php endif; ?>
 </div>
 

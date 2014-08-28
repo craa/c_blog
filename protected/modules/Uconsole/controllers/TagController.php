@@ -5,35 +5,8 @@
  * Description:
  */
 
-class TagController extends Controller
+class TagController extends UController
 {
-    /**
-     * @return array action filters
-     */
-    public function filters()
-    {
-        return array(
-            'accessControl', // perform access control for CRUD operations
-        );
-    }
-
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules()
-    {
-        return array(
-            array('allow', // allow authenticated users to access all actions
-                'users'=>array('@'),
-            ),
-            array('deny',  // deny all users
-                'users'=>array('*'),
-            ),
-        );
-    }
-
     //分类列表
     public function actionList()
     {
@@ -64,7 +37,8 @@ class TagController extends Controller
         $term_taxonomy_id = $_POST['id'];
         $name = $_POST['name'];
         $description = $_POST['description'];
-        if(TermTaxonomy::updateTaxonomy($term_taxonomy_id, $name, $description)){
+        $slug = $_POST['slug'];
+        if(TermTaxonomy::updateTaxonomy($term_taxonomy_id, $name, $description, $slug)){
             echo AjaxResponse::replyJSON(true, '更新成功');
         }else{
             echo AjaxResponse::replyJSON(false, '参数不对');

@@ -21,15 +21,16 @@ class TermTaxonomy extends BaseTermTaxonomy
         );
     }
 
-    public static function getTaxonomyData($taxonomy, $description, $name)
+    public static function getTaxonomyData($taxonomy, $description, $name, $slug = null)
     {
         if($taxonomy == self::$CATEGORY || $taxonomy == self::$TAG){
+            $slug = $slug ? $slug : $taxonomy.'-'.$name;
             return array(
                 'taxonomy'=>$taxonomy,
                 'description'=>$description,
                 'term'=>array(
                     'name'=>$name,
-                    'slug'=>$taxonomy.'-'.$name,
+                    'slug'=> $slug,
                     'taxonomy'=>$taxonomy
                 )
             );
@@ -114,6 +115,14 @@ class TermTaxonomy extends BaseTermTaxonomy
     }
 
     /**
+     * 根据名字获取标签
+     */
+    public static function getTagByName($name)
+    {
+        return self::model()->with('terms')->cache(3600)->find('taxonomy=:t AND name=:n', array(':t'=>TermTaxonomy::$TAG, ':n'=>$name));
+    }
+
+    /**
      * 获取文章的标签并转为字符串
      */
     public static function getTagsAsStringByPostid($post_id)
@@ -134,6 +143,14 @@ class TermTaxonomy extends BaseTermTaxonomy
     {
         $category = self::model()->with('terms','relation')->find('taxonomy=:taxonomy AND object_id=:o_id', array(':taxonomy'=>TermTaxonomy::$CATEGORY, ':o_id'=>$post_id));
         return $category;
+    }
+
+    /**
+     * 根据分类的slug获取分类
+     */
+    public static function getCategoryBySlug($slug)
+    {
+        return self::model()->with('terms')->cache(3600)->find('taxonomy=:t AND slug=:s', array(':t'=>TermTaxonomy::$CATEGORY, ':s'=>$slug));
     }
 
     /**
@@ -201,7 +218,7 @@ class TermTaxonomy extends BaseTermTaxonomy
     /**
      * 更新分类或者标签的数据
      */
-    public static function updateTaxonomy($id, $name, $description)
+    public static function updateTaxonomy($id, $name, $description, $slug = null)
     {
         $ret = true;
         $taxonomy = self::model()->with('terms')->findByPk($id);
@@ -211,13 +228,15 @@ class TermTaxonomy extends BaseTermTaxonomy
                 $ret = false;
             }
         }
-        if($taxonomy->terms->name != $name){
+        $slug = $slug ? $slug : $taxonomy->taxonomy.'-'.$name;
+        if($taxonomy->terms->name != $name || $taxonomy->terms->slug != $slug){
             $taxonomy->terms->name = $name;
-            $taxonomy->terms->slug = $taxonomy->taxonomy.'-'.$name;
+            $taxonomy->terms->slug = $slug;
             if(!$taxonomy->terms->save(false)){
                 $ret = false;
             }
         }
         return $ret;
     }
+
 }

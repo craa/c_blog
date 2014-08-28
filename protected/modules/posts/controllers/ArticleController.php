@@ -10,37 +10,6 @@ class ArticleController extends CController
     public $layout = '//layouts/main';
     public $pageTitle = '文章';
     public $defaultAction='list';
-    /**
-     * @return array action filters
-     */
-    public function filters()
-    {
-        return array(
-            'accessControl', // perform access control for CRUD operations
-        );
-    }
-
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules()
-    {
-        return array(
-            array(
-                'allow',
-                'actions'=>array('detail','list'),
-                'users'=>array('*'),
-            ),
-            array('allow', // allow authenticated users to access all actions
-                'users'=>array('@'),
-            ),
-            array('deny',  // deny all users
-                'users'=>array('*'),
-            ),
-        );
-    }
 
     /**
      * 文章列表
@@ -61,6 +30,52 @@ class ArticleController extends CController
     }
 
     /**
+     * 文章列表，按分类
+     */
+    public function actionCList($category, $page = 1)
+    {
+        $cate = TermTaxonomy::getCategoryBySlug($category);
+        if(empty($cate)){
+            throw new CHttpException('404', '分类不存在!');
+        }
+        $criteria = new CDbCriteria;
+        $criteria->condition = 'term_taxonomy_id = :t';
+        $criteria->params = array(':t'=>$cate->term_taxonomy_id);
+        $count = Posts::model()->with('relation')->cache(3600)->count($criteria);
+        $pages = new CPagination($count);
+        $pages->currentPage = $page - 1;
+        $pages->pageSize = Posts::$PAGE_SIZE;
+        $pages->applyLimit($criteria);
+        $criteria->order='t.ID DESC';
+        $articles = Posts::model()->with('relation')->cache(3600)->findAll($criteria);
+
+        $this->render('list', array('articles'=>$articles, 'pages'=>$pages));
+    }
+
+    /**
+     * 文章列表，按标签
+     */
+    public function actionTlist($tag, $page = 1)
+    {
+        $tag = TermTaxonomy::getTagByName($tag);
+        if(empty($tag)){
+            throw new CHttpException('404', '分类不存在!');
+        }
+        $criteria = new CDbCriteria;
+        $criteria->condition = 'term_taxonomy_id = :t';
+        $criteria->params = array(':t'=>$tag->term_taxonomy_id);
+        $count = Posts::model()->with('relation')->cache(3600)->count($criteria);
+        $pages = new CPagination($count);
+        $pages->currentPage = $page - 1;
+        $pages->pageSize = Posts::$PAGE_SIZE;
+        $pages->applyLimit($criteria);
+        $criteria->order='t.ID DESC';
+        $articles = Posts::model()->with('relation')->cache(3600)->findAll($criteria);
+echo $count;
+        $this->render('list', array('articles'=>$articles, 'pages'=>$pages));
+    }
+
+    /**
      * 文章详情
      */
     public function actionDetail($id)
@@ -69,11 +84,8 @@ class ArticleController extends CController
         if(empty($article))
             throw new CHttpException('404', '文章不存在');
         $this->pageTitle = $article->post_title.'-cra';
-//        Yii::app()->clientscript->registerCssFile('/assets/highlight/styles/shCoreDefault.css');
-//        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shCore.js');
-//        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushPhp.js');
-//        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushBash.js');
-//        Yii::app()->clientscript->registerScriptFile('/assets/highlight/scripts/shBrushJScript.js');
         $this->render('detail', array('article'=>$article));
     }
+
+
 }

@@ -15,7 +15,7 @@
                 <li class="active"><a href="/">首页</a></li>
                 <?php foreach(TermTaxonomy::getAllCategories() as $category): ?>
                     <?php if($category->terms->name != '未分类'): ?>
-                    <li><a href="/"><?php echo $category->terms->name; ?></a></li>
+                    <li><a href="<?php echo $this->createUrl('/posts/article/clist',array('category'=>$category->terms->slug)); ?>"><?php echo $category->terms->name; ?></a></li>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </ul>

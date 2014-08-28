@@ -5,7 +5,7 @@
  * Description:
  */
 
-class CategoryController extends Controller
+class CategoryController extends UController
 {
     /**
      * @return array action filters
@@ -60,8 +60,9 @@ class CategoryController extends Controller
         $description = $_POST['description'];
         $name = $_POST['name'];
         $taxonomy_type = 'category';
+        $slug = $_POST['slug'];
         if(isset($description) && isset($name)){
-            $taxonomy = TermTaxonomy::getTaxonomyData($taxonomy_type, $description, $name);
+            $taxonomy = TermTaxonomy::getTaxonomyData($taxonomy_type, $description, $name, $slug);
             $result = TermTaxonomy::addTaxonomy($taxonomy);
             echo AjaxResponse::replyJSON(true, '成功');
         }else{
@@ -84,7 +85,8 @@ class CategoryController extends Controller
         $term_taxonomy_id = $_POST['id'];
         $name = $_POST['name'];
         $description = $_POST['description'];
-        if(TermTaxonomy::updateTaxonomy($term_taxonomy_id, $name, $description)){
+        $slug = $_POST['slug'];
+        if(TermTaxonomy::updateTaxonomy($term_taxonomy_id, $name, $description, $slug)){
             echo AjaxResponse::replyJSON(true, '更新成功');
         }else{
             echo AjaxResponse::replyJSON(false, '参数不对');

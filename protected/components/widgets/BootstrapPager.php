@@ -56,7 +56,7 @@ class BootstrapPager extends CBasePager
         if($this->pageCount > 1){
             $this->tpl = '<ul class="pagination cblog-pagination">';
             //第一页按钮/上一页按钮
-            if($this->currentPage > 0){
+            if($this->currentPage > 0 && $this->pageCount > $this->max_button_number){
                 $this->tpl .= "<li><a href='{$this->createPageUrl(0)}'>首页</a></li><li><a href='{$this->createPageUrl($this->currentPage-1)}'>上一页</a></li>";
             }
 
@@ -75,7 +75,7 @@ class BootstrapPager extends CBasePager
                 $this->tpl .= "<li><span>...</span></li><li><a href='{$this->createPageUrl($this->pageCount-1)}'>{$this->pageCount}</a></li>";
             }
             //下一页按钮/最后一页
-            if($this->currentPage < $this->pageCount - 1){
+            if($this->currentPage < $this->pageCount - 1 && $this->pageCount > $this->max_button_number){
                 $this->tpl .= "<li><a href='{$this->createPageUrl($this->currentPage+1)}'>下一页</a></li><li><a href='{$this->createPageUrl($this->pageCount-1)}'>尾页</a></li>";
             }
         }

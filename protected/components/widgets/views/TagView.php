@@ -11,8 +11,8 @@
         <ul class="list-inline">
             <?php foreach($tags as $tag): ?>
                 <li>
-                        <span class="label label-info">
-                            <?php echo $tag->terms->name; ?>
+                        <span class="label">
+                            <a href="<?php echo Yii::app()->urlManager->createUrl('/posts/article/tlist', array('tag'=>$tag->terms->name)); ?>"><?php echo $tag->terms->name; ?></a>
                             <span class="badge"><?php echo $tag->relationCount; ?></span>
                         </span>
                 </li>

@@ -17,6 +17,10 @@
             <input type="text" name="name" class="form-control" value="<?php echo $category->terms->name; ?>" placeholder="分类名称">
         </div>
         <div class="form-group">
+            <label >slug</label>
+            <input type="text" name="slug" class="form-control" value="<?php echo $category->terms->slug; ?>" placeholder="slug">
+        </div>
+        <div class="form-group">
             <label >分类描述</label>
             <input type="text" name="description" class="form-control" value="<?php echo $category->description; ?>" placeholder="分类描述">
         </div>

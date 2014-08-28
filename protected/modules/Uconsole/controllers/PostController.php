@@ -4,7 +4,7 @@
  * Date: 14-8-26 21:31
  * Description: 后台文章管理
  */
-class PostController extends Controller
+class PostController extends UController
 {
     public function actionList($page = 1)
     {
@@ -67,7 +67,7 @@ class PostController extends Controller
             $articleInfo['post_content_filtered'] = 'filtered';
         }
         $article->attributes = $articleInfo;
-        $result = $article->save(true);
+        $result = $article->save(true, array_keys($articleInfo));
         if($result){
             TermRelationships::buildRelationships($article->primaryKey, $articleInfo['category_id'], $articleInfo['tags']);
             echo AjaxResponse::replyJSON(true, "保存成功！");
@@ -81,16 +81,18 @@ class PostController extends Controller
      */
     public function actionAjaxDelete()
     {
-        $ret = '';
-        $article = Posts::model()->findByPk($_POST['id']);
-        if(!empty($article)){
-            if($article->delete())
-                $ret = AjaxResponse::replyJSON(true, '删除成功！');
-            else
-                $ret = AjaxResponse::replyJSON(false, $article->errors);
-        }else{
-            $ret = AjaxResponse::replyJSON(false, '文章不存在！');
-        }
-        echo $ret;
+//        $ret = '';
+//        $article = Posts::model()->findByPk($_POST['id']);
+//        if(!empty($article)){
+//
+//            if($article->delete())
+//                $ret = AjaxResponse::replyJSON(true, '删除成功！');
+//            else
+//                $ret = AjaxResponse::replyJSON(false, $article->errors);
+//        }else{
+//            $ret = AjaxResponse::replyJSON(false, '文章不存在！');
+//        }
+//        echo $ret;
+        echo Posts::deleteArticle($_POST['id']);
     }
 }

@@ -32,3 +32,8 @@ footer p {
 .article-content img{
     max-width: 100%;
 }
+
+/*语法高亮边框*/
+.syntaxhighlighter{
+    border: 1px solid #DEDEDE;
+}

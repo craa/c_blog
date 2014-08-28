@@ -34,7 +34,7 @@
 
 <script>
     $(function(){
-        //删除分类
+        //删除标签
         $(".delete-tag").click(function(){
             $deleteBtn = $(this);
             CBLOG.AJAX.post({
@@ -46,7 +46,7 @@
                 }
             });
         });
-        //修改分类
+        //修改标签
         $(".edit-tag").click(function(){
             $updateBtn = $(this);
             CBLOG.AJAX.post({
