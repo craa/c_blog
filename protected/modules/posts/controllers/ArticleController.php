@@ -107,7 +107,7 @@ class ArticleController extends Controller
         $cate_name = empty($cate) ? '分类不存在' : $cate->terms->name;
         $this->breadcrumbs = array(
             '首页'=>'/',
-            $cate_name => $this->createUrl('', array('category'=>$cate->terms->slug)),
+            $cate_name => $this->createUrl('/posts/article/clist', array('category'=>$cate->terms->slug)),
             $article->post_title => ''
         );
 
