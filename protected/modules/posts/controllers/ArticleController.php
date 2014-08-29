@@ -5,7 +5,7 @@
  * Description: 文章上传类
  */
 
-class ArticleController extends CController
+class ArticleController extends Controller
 {
     public $layout = '//layouts/main';
     public $pageTitle = '文章';
@@ -24,6 +24,11 @@ class ArticleController extends CController
         $pages->pageSize = Posts::$PAGE_SIZE;
         $pages->applyLimit($criteria);
         $articles = Posts::model()->findAll($criteria);
+
+        $this->breadcrumbs = array(
+            '首页'=>'/',
+            '所有文章'=>''
+        );
 
 
         $this->render('list', array('articles'=>$articles, 'pages'=>$pages));
@@ -49,6 +54,12 @@ class ArticleController extends CController
         $criteria->order='t.ID DESC';
         $articles = Posts::model()->with('relation')->cache(3600)->findAll($criteria);
 
+        $this->breadcrumbs = array(
+            '首页'=>'/',
+            $cate->terms->name => $this->createUrl('', array('category'=>$category)),
+            '文章列表'=>''
+        );
+
         $this->render('list', array('articles'=>$articles, 'pages'=>$pages));
     }
 
@@ -57,13 +68,13 @@ class ArticleController extends CController
      */
     public function actionTlist($tag, $page = 1)
     {
-        $tag = TermTaxonomy::getTagByName($tag);
-        if(empty($tag)){
+        $otag = TermTaxonomy::getTagByName($tag);
+        if(empty($otag)){
             throw new CHttpException('404', '分类不存在!');
         }
         $criteria = new CDbCriteria;
         $criteria->condition = 'term_taxonomy_id = :t';
-        $criteria->params = array(':t'=>$tag->term_taxonomy_id);
+        $criteria->params = array(':t'=>$otag->term_taxonomy_id);
         $count = Posts::model()->with('relation')->cache(3600)->count($criteria);
         $pages = new CPagination($count);
         $pages->currentPage = $page - 1;
@@ -71,7 +82,13 @@ class ArticleController extends CController
         $pages->applyLimit($criteria);
         $criteria->order='t.ID DESC';
         $articles = Posts::model()->with('relation')->cache(3600)->findAll($criteria);
-echo $count;
+
+        $this->breadcrumbs = array(
+            '首页'=>'/',
+            $otag->terms->name => $this->createUrl('', array('tag'=>$tag)),
+            '文章列表'=>''
+        );
+
         $this->render('list', array('articles'=>$articles, 'pages'=>$pages));
     }
 
@@ -84,6 +101,16 @@ echo $count;
         if(empty($article))
             throw new CHttpException('404', '文章不存在');
         $this->pageTitle = $article->post_title.'-cra';
+
+        //面包屑
+        $cate = TermTaxonomy::getCategoryByPostid($id);
+        $cate_name = empty($cate) ? '分类不存在' : $cate->terms->name;
+        $this->breadcrumbs = array(
+            '首页'=>'/',
+            $cate_name => $this->createUrl('', array('category'=>$cate->terms->slug)),
+            $article->post_title => ''
+        );
+
         $this->render('detail', array('article'=>$article));
     }
 

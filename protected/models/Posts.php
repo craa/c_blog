@@ -5,7 +5,7 @@ Yii::import('application.models._base.BasePosts');
 class Posts extends BasePosts
 {
     //每页文章数量
-    public static $PAGE_SIZE = 1;
+    public static $PAGE_SIZE = 15;
 	public static function model($className=__CLASS__) {
 		return parent::model($className);
 	}

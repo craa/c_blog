@@ -6,6 +6,7 @@
  * Time: 下午10:22
  */
 ?>
+<?php $this->widget('BreadCrumbWidget', array('breadcrumbs'=>$this->breadcrumbs)); ?>
 <div class="row">
     <!-- 左侧栏 -->
     <article class="content-list col-sm-9 col-xs-12">
@@ -26,7 +27,7 @@
     <!-- 右侧栏 -->
     <div class="col-sm-3 hidden-xs">
         <!-- 标签 -->
-        <?php $this->widget('TagWidget'); ?>
+        <?php $this->widget('TagCloudWidget'); ?>
     </div>
 </div>
 
