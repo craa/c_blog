@@ -55,6 +55,7 @@ return array(
 			'showScriptName'=>false,
 			'urlSuffix'=>'.html',
 			'rules'=>array(
+                '/'=>'posts/article/list',
                 'article-<id:\d+>'=>'posts/article/detail',
                 'article-list-<page:\d+>'=>'posts/article/list',
                 'article-list'=>'posts/article/list',

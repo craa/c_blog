@@ -1,3 +1,19 @@
+/*导航样式*/
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    border-bottom: 2px solid red;
+    background-color: #f8f8f8;
+    color: #333;
+}
+.nav-pills > li > a {
+    color: #333;
+    border-radius: 0;
+    font-family: 'Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';
+}
+.nav-pills > li > a:hover,  .nav-pills > li.active > a:hover{
+    background-color: #f8f8f8;
+    color: #ff9109;
+}
+
 
 /*左侧栏样式*/
 

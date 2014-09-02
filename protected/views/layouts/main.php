@@ -11,17 +11,26 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="pull-left">
-            <ul class="nav nav-pills">
-                <li class="active"><a href="/">首页</a></li>
-                <?php foreach(TermTaxonomy::getAllCategories() as $category): ?>
-                    <?php if($category->terms->name != '未分类'): ?>
-                    <li><a href="<?php echo $this->createUrl('/posts/article/clist',array('category'=>$category->terms->slug)); ?>"><?php echo $category->terms->name; ?></a></li>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </ul>
+            <?php
+                $menu_items = array(array('label'=>'首页','url'=>array('/posts/article/list')));
+                foreach(TermTaxonomy::getAllCategories() as $category)
+                {
+                    if($category->terms->name != '未分类'){
+                        $menu_items[] = array(
+                            'label' => $category->terms->name,
+                            'url' => array('/posts/article/clist','category'=>$category->terms->slug),
+                        );
+                    }
+                }
+                $this->widget('zii.widgets.CMenu', array(
+                    'htmlOptions'=>array('id'=>'','class'=>'nav nav-pills'),
+                    'items'=>$menu_items
+                ));
+            ?>
         </div>
     </div>
 </nav>
+
 
 
 <div class="container">

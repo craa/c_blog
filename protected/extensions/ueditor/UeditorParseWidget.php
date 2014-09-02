@@ -9,6 +9,7 @@
 class UeditorParseWidget extends CWidget
 {
     public $selector = '';
+    //语法高亮
     public $sh_js = 'shCore.min.js';
     public $sh_theme = 'Default';
 
