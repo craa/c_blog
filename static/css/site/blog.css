@@ -33,6 +33,9 @@
 .article-attributes{
     margin-bottom: 10px;
 }
+.article-attribute{
+    margin-right: 20px;
+}
 
 footer p {
     color: #5a5a5a;

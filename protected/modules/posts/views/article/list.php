@@ -20,7 +20,14 @@
                     </small>
                 </h3>
                 <div class="article-attributes">
-                    <span class="time pull-right"><span class="glyphicon glyphicon-time"></span> <?php echo $article->post_date; ?></span>
+                    <span class="pull-right">
+                        <span class="article-attribute" title="阅读数：<?php echo $article->getReadCount(); ?>">
+                            <span class="glyphicon glyphicon-eye-open"></span> <?php echo $article->getReadCount(); ?>
+                        </span>
+                        <span class="article-attribute" title="发布时间：<?php echo $article->post_date; ?>">
+                            <span class="glyphicon glyphicon-time"></span> <?php echo $article->post_date; ?>
+                        </span>
+                    </span>
                     <?php foreach(TermTaxonomy::getTagsByPostid($article->ID) as $tag): ?>
                         <span class="label <?php echo TermTaxonomy::getRandomStyleOfTag(); ?>"><?php echo $tag->terms->name; ?></span>
                     <?php endforeach; ?>
@@ -28,7 +35,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="article-content">
-                <?php echo $article->post_excerpt; ?>
+                <?php echo $article->getPostExcerpt(); ?>
             </div>
         </div>
         <?php endforeach; ?>

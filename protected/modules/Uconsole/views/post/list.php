@@ -26,7 +26,7 @@
         <tr>
             <td><?php echo $article->ID; ?></td>
             <td><?php echo $article->post_title; ?></td>
-            <td><?php echo $article->post_excerpt; ?></td>
+            <td><?php echo $article->getPostExcerpt(300); ?></td>
             <td><?php echo $article->post_status; ?></td>
             <td><?php echo $article->comment_status; ?></td>
             <td><?php echo $article->post_date; ?></td>

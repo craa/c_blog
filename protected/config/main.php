@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'宏伟的宏',
+	'name'=>'crains',
     'defaultController'=>'posts/article',
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -55,9 +55,9 @@ return array(
 			'showScriptName'=>false,
 			'urlSuffix'=>'.html',
 			'rules'=>array(
-                '/'=>'posts/article/list',
                 'article-<id:\d+>'=>'posts/article/detail',
                 'article-list-<page:\d+>'=>'posts/article/list',
+                '/'=>'posts/article/list',
                 'article-list'=>'posts/article/list',
                 'universe'=>'Uconsole/console/index',
                 'category/<category:\w+>-<page:\d+>'=>'posts/article/clist',

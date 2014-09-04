@@ -7,7 +7,6 @@
  */
 ?>
 <?php $this->beginContent('//layouts/base'); ?>
-
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="pull-left">

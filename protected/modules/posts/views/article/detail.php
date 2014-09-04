@@ -13,7 +13,20 @@
         <div class="article-info">
             <div class="article-title">
                 <h3><?php echo $article->post_title; ?></h3>
-                <p><?php echo $article->post_date; ?></p>
+                <div class="article-attributes">
+                    <span class="pull-right">
+                        <span class="article-attribute" title="阅读数：<?php echo $article->getReadCount(true); ?>">
+                            <span class="glyphicon glyphicon-eye-open"></span> <?php echo $article->getReadCount(true); ?>
+                        </span>
+                        <span class="article-attribute" title="发布时间：<?php echo $article->post_date; ?>">
+                            <span class="glyphicon glyphicon-time"></span> <?php echo $article->post_date; ?>
+                        </span>
+                    </span>
+                    <?php foreach(TermTaxonomy::getTagsByPostid($article->ID) as $tag): ?>
+                        <span class="label <?php echo TermTaxonomy::getRandomStyleOfTag(); ?>"><?php echo $tag->terms->name; ?></span>
+                    <?php endforeach; ?>
+                </div>
+                <div class="clearfix"></div>
             </div>
             <div class="article-content">
                 <?php echo $article->post_content; ?>

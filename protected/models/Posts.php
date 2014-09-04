@@ -6,6 +6,8 @@ class Posts extends BasePosts
 {
     //每页文章数量
     public static $PAGE_SIZE = 15;
+    //文章阅读数统计
+    public $read_count;
 	public static function model($className=__CLASS__) {
 		return parent::model($className);
 	}
@@ -46,5 +48,24 @@ class Posts extends BasePosts
         return $ret;
     }
 
+    public function getPostExcerpt($length = 100, $suffix = '...')
+    {
+        $str_len = mb_strlen($this->post_excerpt, 'utf-8');
+        $sub_str = mb_substr($this->post_excerpt, 0, $length, 'utf-8');
+        return ($str_len > 100) || ($str_len == 0) ? $sub_str.$suffix : $sub_str;
+    }
+
+    /**
+     * 获取文章阅读数量
+     * @param bool $increase    如果increase为true则阅读数自增，默认为false
+     * @return int
+     */
+    public function getReadCount($increase = false)
+    {
+        if($this->read_count === null){
+            $this->read_count = Postmeta::getReadCount($this->ID, $increase);
+        }
+        return $this->read_count;
+    }
 
 }

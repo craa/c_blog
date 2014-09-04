@@ -8,7 +8,7 @@
 class ArticleController extends Controller
 {
     public $layout = '//layouts/main';
-    public $pageTitle = '文章';
+    public $pageTitle = 'crains';
     public $defaultAction='list';
 
     /**
@@ -100,7 +100,7 @@ class ArticleController extends Controller
         $article = Posts::model()->cache(3600)->findByPk($id);
         if(empty($article))
             throw new CHttpException('404', '文章不存在');
-        $this->pageTitle = $article->post_title.'-cra';
+        $this->pageTitle = $article->post_title.' - crains';
 
         //面包屑
         $cate = TermTaxonomy::getCategoryByPostid($id);

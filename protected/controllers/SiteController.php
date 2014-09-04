@@ -75,6 +75,7 @@ class SiteController extends Controller
 
         // echo  CPasswordHelper::hashPassword('chenisbest');
         Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . "/static/css/site/signin.css");
+        $this->pageTitle = 'crains - 登陆';
         $this->render('signin');
     }
 
