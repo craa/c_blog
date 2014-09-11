@@ -97,20 +97,20 @@ return array(
 				),
 				// uncomment the following to show log messages on web pages
                 ####################调试sql可开启###################
-                array(
-                    'class'=>'CWebLogRoute',
-                    'levels'=>'error, warning, info',
-                ),
-                array(
-                    'class'=>'CProfileLogRoute',
-                    'levels'=>'trace',
-                    'categories'=>'system.db.*' //只显示关于数据库信息,包括数据库连接,数据库执行语句
-                ),
-                array(
-                    'class'=>'CWebLogRoute',
-                    'levels'=>'trace',
-                    'categories'=>'system.db.*' //只显示关于数据库信息,包括数据库连接,数据库执行语句
-                )
+//                array(
+//                    'class'=>'CWebLogRoute',
+//                    'levels'=>'error, warning, info',
+//                ),
+//                array(
+//                    'class'=>'CProfileLogRoute',
+//                    'levels'=>'trace',
+//                    'categories'=>'system.db.*' //只显示关于数据库信息,包括数据库连接,数据库执行语句
+//                ),
+//                array(
+//                    'class'=>'CWebLogRoute',
+//                    'levels'=>'trace',
+//                    'categories'=>'system.db.*' //只显示关于数据库信息,包括数据库连接,数据库执行语句
+//                )
 
 			),
 		),
