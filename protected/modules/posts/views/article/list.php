@@ -47,6 +47,8 @@
     </article>
     <!-- 右侧栏 -->
     <div class="col-sm-3 hidden-xs">
+        <!-- 百度 -->
+        <?php $this->widget('BaiduSearchWidget'); ?>
         <!-- 标签 -->
         <?php $this->widget('TagCloudWidget'); ?>
     </div>
