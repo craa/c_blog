@@ -41,7 +41,7 @@
 <footer>
     <div class="container">
         <p class="text-center">
-            &copy;Copyright 2014 cra
+            &copy;Copyright 2014 crains
         </p>
     </div>
 </footer>

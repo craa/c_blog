@@ -63,7 +63,7 @@
         </div>
         <div class="form-group hidden">
             <label >ID</label>
-            <input type="text" name="article[id]" class="form-control" readonly value="<?php echo $article->ID; ?>" placeholder="文章标题">
+            <input type="text" name="article[id]" class="form-control" readonly value="<?php echo $article->ID; ?>" placeholder="文章ID">
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">标题</label>

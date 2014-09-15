@@ -17,7 +17,7 @@
                     <li class="btn btn-success start-menu-item" id="menu-item-article" data-url="/Uconsole/post/list">文章</li>
                     <li class="btn btn-success start-menu-item" id="menu-item-category" data-url="<?php echo $this->createUrl('/Uconsole/category/list'); ?>">分类</li>
                     <li class="btn btn-success start-menu-item" id="menu-item-tag" data-url="<?php echo $this->createUrl('/Uconsole/tag/list'); ?>">标签</li>
-                    <li class="btn btn-success">新建文章</li>
+                    <li class="btn btn-success start-menu-item" id="menu-item-link" data-url="<?php echo $this->createUrl('/Uconsole/link/list'); ?>">友链</li>
                 </ul>
             </div>
         </div>

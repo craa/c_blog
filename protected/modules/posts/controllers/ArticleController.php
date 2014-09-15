@@ -8,7 +8,7 @@
 class ArticleController extends Controller
 {
     public $layout = '//layouts/main';
-    public $pageTitle = 'crains';
+    public $pageTitle = 'crains - lost in lost';
     public $defaultAction='list';
 
     /**
@@ -101,6 +101,9 @@ class ArticleController extends Controller
         if(empty($article))
             throw new CHttpException('404', '文章不存在');
         $this->pageTitle = $article->post_title.' - crains';
+        $cs = Yii::app()->clientscript;
+        $cs->registerMetaTag($this->pageTitle, 'KeyWords');
+        $cs->registerMetaTag($article->getPostExcerpt(), 'Description');
 
         //面包屑
         $cate = TermTaxonomy::getCategoryByPostid($id);
