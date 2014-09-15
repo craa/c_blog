@@ -41,6 +41,8 @@
     <div class="col-sm-3 hidden-xs">
         <!-- 标签 -->
         <?php $this->widget('TagCloudWidget'); ?>
+        <!-- 友链 -->
+        <?php $this->widget('FriendLinkWidget'); ?>
     </div>
 </div>
 
