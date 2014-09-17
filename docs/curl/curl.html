@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PHP Curl Class Documentation</title>
+<style>
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}.highlight table td{padding:5px}.highlight table pre{margin:0}.highlight .cm{color:#999988;font-style:italic}.highlight .cp{color:#999999;font-weight:bold}.highlight .c1{color:#999988;font-style:italic}.highlight .cs{color:#999999;font-weight:bold;font-style:italic}.highlight .c,.highlight .cd{color:#999988;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .gd{color:#000000;background-color:#ffdddd}.highlight .ge{color:#000000;font-style:italic}.highlight .gr{color:#aa0000}.highlight .gh{color:#999999}.highlight .gi{color:#000000;background-color:#ddffdd}.highlight .go{color:#888888}.highlight .gp{color:#555555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaaaaa}.highlight .gt{color:#aa0000}.highlight .kc{color:#000000;font-weight:bold}.highlight .kd{color:#000000;font-weight:bold}.highlight .kn{color:#000000;font-weight:bold}.highlight .kp{color:#000000;font-weight:bold}.highlight .kr{color:#000000;font-weight:bold}.highlight .kt{color:#445588;font-weight:bold}.highlight .k,.highlight .kv{color:#000000;font-weight:bold}.highlight .mf{color:#009999}.highlight .mh{color:#009999}.highlight .il{color:#009999}.highlight .mi{color:#009999}.highlight .mo{color:#009999}.highlight .m,.highlight .mb,.highlight .mx{color:#009999}.highlight .sb{color:#d14}.highlight .sc{color:#d14}.highlight .sd{color:#d14}.highlight .s2{color:#d14}.highlight .se{color:#d14}.highlight .sh{color:#d14}.highlight .si{color:#d14}.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .bp{color:#999999}.highlight .nb{color:#0086B3}.highlight .nc{color:#445588;font-weight:bold}.highlight .no{color:#008080}.highlight .nd{color:#3c5d5d;font-weight:bold}.highlight .ni{color:#800080}.highlight .ne{color:#990000;font-weight:bold}.highlight .nf{color:#990000;font-weight:bold}.highlight .nl{color:#990000;font-weight:bold}.highlight .nn{color:#555555}.highlight .nt{color:#000080}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .nv{color:#008080}.highlight .ow{color:#000000;font-weight:bold}.highlight .o{color:#000000;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight{background-color:#f8f8f8}.content h1,.content section h1,.content h2,.content section h2,.content h3,.content h4,.content h5,.content h6,.content section h3,.content section h4,.content section h5,.content section h6,html,body{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:13px}.content h1,.content section h1,.content h2,.content section h2,.content h3,.content h4,.content h5,.content h6,.content section h3,.content section h4,.content section h5,.content section h6{font-weight:bold}.content code,.content section code,.content pre{font-family:Consolas, "Liberation Mono", Courier, monospace;font-size:13px;line-height:19px}.content code,.content section code{-ms-word-break:break-all;word-break:break-all;word-break:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto}.highlight .c,.highlight .cm,.highlight .c1,.highlight .cs{color:#909090}.highlight,.highlight .w{background-color:#f8f8f8}html,body{color:#333333;padding:0;margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:white;height:100%}.tocify-wrapper{overflow-y:auto;overflow-x:hidden;position:fixed;top:0;left:0;bottom:0;width:230px;background-color:transparent;font-size:13px;font-weight:bold;border-right:1px solid #dadfe5}.tocify-wrapper h3{padding:15px;font-size:1.5em}.tocify-wrapper h3 a{color:#333;text-decoration:none}.tocify-wrapper img+.tocify{margin-top:20px}.tocify-wrapper .search-info{margin-top:0;padding:1em 15px;font-size:0.9em;font-weight:bold;text-shadow:0 1px 0 #dfb0b3;background:#c97a7e;display:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.tocify-wrapper .tocify-item.tocify-hover.tocify-focus{color:#fff;text-decoration:none}.tocify-wrapper .tocify-item.tocify-hover{color:#222;text-decoration:underline}.tocify-wrapper .tocify-item>a,.tocify-wrapper .toc-footer li{padding:0 15px 0 15px;display:block;overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis}.tocify-wrapper ul,.tocify-wrapper li{list-style:none;margin:0;padding:0;line-height:28px}.tocify-wrapper li{color:#008cdd;-webkit-transition-property:background;-moz-transition-property:background;-o-transition-property:background;transition-property:background;-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;-o-transition-timing-function:linear;transition-timing-function:linear}.tocify-wrapper .tocify-focus{background-color:#2467af;color:white}.tocify-wrapper .tocify-subheader{display:none;font-weight:500}.tocify-wrapper .tocify-subheader .tocify-item>a{padding-left:25px;font-size:12px}.tocify-wrapper .tocify-subheader>li:last-child{box-shadow:none}.tocify-wrapper .toc-footer{padding:1em 0;margin-top:1em;border-top:1px solid #999}.tocify-wrapper .toc-footer li,.tocify-wrapper .toc-footer a{color:#008cdd;text-decoration:none}.tocify-wrapper .toc-footer a:hover{text-decoration:underline}.tocify-wrapper .toc-footer li{font-size:0.8em;line-height:1.7;text-decoration:none}.page-wrapper{margin-left:231px;min-width:700px;position:relative;z-index:10;background-color:white;min-height:100%;padding-bottom:1px}.page-wrapper .dark-box{width:60%;background-color:transparent;position:absolute;right:0;top:0;bottom:0;border-left:1px solid #dadfe5;z-index:30}.page-wrapper #lang-selector{display:none;position:fixed;width:100%;z-index:50;font-weight:bold;background-color:#222222;border-bottom:5px solid transparent}.page-wrapper #lang-selector a{display:block;float:left;color:white;text-decoration:none;padding:0 10px;line-height:30px}.page-wrapper #lang-selector a.active{background-color:transparent;color:white}.page-wrapper #lang-selector a:active{background-color:#111111;color:white}.page-wrapper #lang-selector:after{content:'';clear:both;display:block}.content{position:relative;z-index:30}.content,.content section{padding-bottom:6em}.content:after,.content section:after{content:'';display:block;clear:both}.content>h1,.content>h2,.content>h3,.content>h4,.content>h5,.content>h6,.content>p,.content>table,.content>ul,.content>ol,.content>aside,.content>dl,.content section>h1,.content section>h2,.content section>h3,.content section>h4,.content section>h5,.content section>h6,.content section>p,.content section>table,.content section>ul,.content section>ol,.content section>aside,.content section>dl{margin-right:60%;padding:0 28px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;text-shadow:0px 1px 0px white}.content>ul,.content>ol,.content section>ul,.content section>ol{padding-left:43px}.content>h1,.content>h2,.content>div,.content section>h1,.content section>h2,.content section>div{clear:both}.content h1,.content section h1{font-size:30px;padding-top:0.5em;padding-bottom:0.5em;border-bottom:1px solid #ccc;margin-bottom:21px;margin-top:0;border-top:1px solid #ddd;background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fff), color-stop(100%, #f9f9f9));background-image:-webkit-linear-gradient(top, #fff, #f9f9f9);background-image:-moz-linear-gradient(top, #fff, #f9f9f9);background-image:-o-linear-gradient(top, #fff, #f9f9f9);background-image:linear-gradient(top, #ffffff,#f9f9f9)}.content h2,.content section h2{font-size:20px;margin-top:4em;margin-bottom:0;border-top:1px solid #ccc;padding-top:1.2em;padding-bottom:1.2em;background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255,255,255,0.4)), color-stop(100%, rgba(255,255,255,0)));background-image:-webkit-linear-gradient(top, rgba(255,255,255,0.4), rgba(255,255,255,0));background-image:-moz-linear-gradient(top, rgba(255,255,255,0.4), rgba(255,255,255,0));background-image:-o-linear-gradient(top, rgba(255,255,255,0.4), rgba(255,255,255,0));background-image:linear-gradient(top, rgba(255,255,255,0.4),rgba(255,255,255,0))}.content h1+h2,.content h1+div+h2,.content section h1+h2,.content section h1+div+h2{margin-top:-21px;border-top:none}.content h3,.content h4,.content h5,.content h6,.content section h3,.content section h4,.content section h5,.content section h6{font-size:12px;margin-top:2.5em;margin-bottom:0.8em;text-transform:uppercase}.content h4,.content h5,.content h6,.content section h4,.content section h5,.content section h6{font-size:10px}.content hr,.content section hr{margin:2em 0;border-top:2px solid transparent;border-bottom:2px solid white}.content table,.content section table{margin-bottom:1em;overflow:auto}.content table th,.content table td,.content section table th,.content section table td{text-align:left;vertical-align:top;line-height:1.6}.content table th,.content section table th{padding:5px 10px;border-bottom:1px solid #ccc;vertical-align:bottom}.content table td,.content section table td{padding:10px}.content table tr:last-child,.content section table tr:last-child{border-bottom:1px solid #ccc}.content table tr:nth-child(odd)>td,.content section table tr:nth-child(odd)>td{background-color:white}.content table tr:nth-child(even)>td,.content section table tr:nth-child(even)>td{background-color:white}.content dt,.content section dt{font-weight:bold}.content dd,.content section dd{margin-left:15px}.content p,.content li,.content dt,.content dd,.content section p,.content section li,.content section dt,.content section dd{line-height:1.6;margin-top:0}.content img,.content section img{max-width:100%}.content code,.content section code{background-color:rgba(0,0,0,0.05);padding:3px;border-radius:3px}.content aside,.content section aside{padding-top:1em;padding-bottom:1em;text-shadow:0 1px 0 #c6dde9;margin-top:1.5em;margin-bottom:1.5em;background:#8fbcd4;line-height:1.6}.content aside.warning,.content section aside.warning{background-color:#c97a7e;text-shadow:0 1px 0 #dfb0b3}.content aside.success,.content section aside.success{background-color:#6ac174;text-shadow:0 1px 0 #a0d7a6}.content aside:before,.content section aside:before{vertical-align:middle;padding-right:0.5em;font-size:14px}.content .search-highlight{padding:2px;margin:-2px;border-radius:4px;border:1px solid #F7E633;text-shadow:1px 1px 0 #666;background:-webkit-gradient(linear, 100% 100%, 0% 0%, color-stop(0%, #f7e633), color-stop(100%, #f1d32f));background:-webkit-linear-gradient(bottom right, #f7e633 0%, #f1d32f 100%);background:-moz-linear-gradient(bottom right, #f7e633 0%, #f1d32f 100%);background:-o-linear-gradient(bottom right, #f7e633 0%, #f1d32f 100%);background:linear-gradient(bottom right, #f7e633 0%,#f1d32f 100%)}.content pre,.content blockquote{border-radius:3px;border:1px solid #ddd;background-color:#f8f8f8;padding:6px 10px;margin:7px 30px;width:calc(60% - 60px);white-space:pre-wrap;float:right;clear:right;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.content pre>p,.content blockquote>p{margin:0}.content pre a,.content blockquote a{color:#fff;text-decoration:none;border-bottom:dashed 1px #ccc}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+/* jquery Tocify - v1.9.0 - 2013-10-01
+* http://www.gregfranko.com/jquery.tocify.js/
+* Copyright (c) 2013 Greg Franko; Licensed MIT */
+function toc(){toc=$("#toc").tocify({selectors:"h1, h2",theme:"none",smoothScroll:!1,showEffectSpeed:0,hideEffectSpeed:180,hashGenerator:function(e,t){return t.prop("id")}}).data("toc-tocify")}!function(e){"use strict";e(window.jQuery,window,document)}(function(e,t,s){"use strict";var i="tocify",o="tocify-focus",n="tocify-hover",a="tocify-hide",l="tocify-header",r="."+l,h="tocify-subheader",d="."+h,c="tocify-item",f="."+c,u="tocify-extend-page",p="."+u;e.widget("toc.tocify",{version:"1.9.0",options:{context:"body",ignoreSelector:null,selectors:"h1, h2, h3",showAndHide:!0,showEffect:"slideDown",showEffectSpeed:"medium",hideEffect:"slideUp",hideEffectSpeed:"medium",smoothScroll:!0,smoothScrollSpeed:"medium",scrollTo:0,showAndHideOnScroll:!0,highlightOnScroll:!0,highlightOffset:40,theme:"bootstrap",extendPage:!0,extendPageOffset:100,history:!0,scrollHistory:!1,hashGenerator:"compact",highlightDefault:!0},_create:function(){var s=this;s.extendPageScroll=!0,s.items=[],s._generateToc(),s._addCSSClasses(),s.webkit=function(){for(var e in t)if(e&&-1!==e.toLowerCase().indexOf("webkit"))return!0;return!1}(),s._setEventHandlers(),e(t).load(function(){s._setActiveElement(!0),e("html, body").promise().done(function(){setTimeout(function(){s.extendPageScroll=!1},0)})})},_generateToc:function(){var t,s,o=this,n=o.options.ignoreSelector;return t=e(this.options.context).find(-1!==this.options.selectors.indexOf(",")?this.options.selectors.replace(/ /g,"").substr(0,this.options.selectors.indexOf(",")):this.options.selectors.replace(/ /g,"")),t.length?(o.element.addClass(i),void t.each(function(t){e(this).is(n)||(s=e("<ul/>",{id:l+t,"class":l}).append(o._nestElements(e(this),t)),o.element.append(s),e(this).nextUntil(this.nodeName.toLowerCase()).each(function(){0===e(this).find(o.options.selectors).length?e(this).filter(o.options.selectors).each(function(){e(this).is(n)||o._appendSubheaders.call(this,o,s)}):e(this).find(o.options.selectors).each(function(){e(this).is(n)||o._appendSubheaders.call(this,o,s)})}))})):void o.element.addClass(a)},_setActiveElement:function(e){var s=this,i=t.location.hash.substring(1),o=s.element.find('li[data-unique="'+i+'"]');return i.length?(s.element.find("."+s.focusClass).removeClass(s.focusClass),o.addClass(s.focusClass),s.options.showAndHide&&o.click()):(s.element.find("."+s.focusClass).removeClass(s.focusClass),!i.length&&e&&s.options.highlightDefault&&s.element.find(f).first().addClass(s.focusClass)),s},_nestElements:function(t,s){var i,o,n;return i=e.grep(this.items,function(e){return e===t.text()}),this.items.push(i.length?t.text()+s:t.text()),n=this._generateHashValue(i,t,s),o=e("<li/>",{"class":c,"data-unique":n}).append(e("<a/>",{text:t.text()})),t.before(e("<div/>",{name:n,"data-unique":n})),o},_generateHashValue:function(e,t,s){var i="",o=this.options.hashGenerator;if("pretty"===o){for(i=t.text().toLowerCase().replace(/\s/g,"-");i.indexOf("--")>-1;)i=i.replace(/--/g,"-");for(;i.indexOf(":-")>-1;)i=i.replace(/:-/g,"-")}else i="function"==typeof o?o(t.text(),t):t.text().replace(/\s/g,"");return e.length&&(i+=""+s),i},_appendSubheaders:function(t,s){var i=e(this).index(t.options.selectors),o=e(t.options.selectors).eq(i-1),n=+e(this).prop("tagName").charAt(1),a=+o.prop("tagName").charAt(1);a>n?t.element.find(d+"[data-tag="+n+"]").last().append(t._nestElements(e(this),i)):n===a?s.find(f).last().after(t._nestElements(e(this),i)):s.find(f).last().after(e("<ul/>",{"class":h,"data-tag":n})).next(d).append(t._nestElements(e(this),i))},_setEventHandlers:function(){var i=this;this.element.on("click.tocify","li",function(){if(i.options.history&&(t.location.hash=e(this).attr("data-unique")),i.element.find("."+i.focusClass).removeClass(i.focusClass),e(this).addClass(i.focusClass),i.options.showAndHide){var s=e('li[data-unique="'+e(this).attr("data-unique")+'"]');i._triggerShow(s)}i._scrollTo(e(this))}),this.element.find("li").on({"mouseenter.tocify":function(){e(this).addClass(i.hoverClass),e(this).css("cursor","pointer")},"mouseleave.tocify":function(){"bootstrap"!==i.options.theme&&e(this).removeClass(i.hoverClass)}}),(i.options.extendPage||i.options.highlightOnScroll||i.options.scrollHistory||i.options.showAndHideOnScroll)&&e(t).on("scroll.tocify",function(){e("html, body").promise().done(function(){var o,n,a,l,r=e(t).scrollTop(),h=e(t).height(),d=e(s).height(),c=e("body")[0].scrollHeight;if(i.options.extendPage&&(i.webkit&&r>=c-h-i.options.extendPageOffset||!i.webkit&&h+r>d-i.options.extendPageOffset)&&!e(p).length){if(n=e('div[data-unique="'+e(f).last().attr("data-unique")+'"]'),!n.length)return;a=n.offset().top,e(i.options.context).append(e("<div />",{"class":u,height:Math.abs(a-r)+"px","data-unique":u})),i.extendPageScroll&&(l=i.element.find("li.active"),i._scrollTo(e('div[data-unique="'+l.attr("data-unique")+'"]')))}setTimeout(function(){var s,n=null,a=null,l=e(i.options.context).find("div[data-unique]");l.each(function(t){var s=Math.abs((e(this).next().length?e(this).next():e(this)).offset().top-r-i.options.highlightOffset);return null==n||n>s?(n=s,void(a=t)):!1}),s=e(l[a]).attr("data-unique"),o=e('li[data-unique="'+s+'"]'),i.options.highlightOnScroll&&o.length&&(i.element.find("."+i.focusClass).removeClass(i.focusClass),o.addClass(i.focusClass)),i.options.scrollHistory&&t.location.hash!=="#"+s&&t.location.replace("#"+s),i.options.showAndHideOnScroll&&i.options.showAndHide&&i._triggerShow(o,!0)},0)})})},show:function(t){var s=this;if(!t.is(":visible"))switch(t.find(d).length||t.parent().is(r)||t.parent().is(":visible")?t.children(d).length||t.parent().is(r)||(t=t.closest(d)):t=t.parents(d).add(t),s.options.showEffect){case"none":t.show();break;case"show":t.show(s.options.showEffectSpeed);break;case"slideDown":t.slideDown(s.options.showEffectSpeed);break;case"fadeIn":t.fadeIn(s.options.showEffectSpeed);break;default:t.show()}return s.hide(e(d).not(t.parent().is(r)?t:t.closest(r).find(d).not(t.siblings()))),s},hide:function(e){var t=this;switch(t.options.hideEffect){case"none":e.hide();break;case"hide":e.hide(t.options.hideEffectSpeed);break;case"slideUp":e.slideUp(t.options.hideEffectSpeed);break;case"fadeOut":e.fadeOut(t.options.hideEffectSpeed);break;default:e.hide()}return t},_triggerShow:function(e,t){var s=this;return e.parent().is(r)||e.next().is(d)?s.show(e.next(d),t):e.parent().is(d)&&s.show(e.parent(),t),s},_addCSSClasses:function(){return"jqueryui"===this.options.theme?(this.focusClass="ui-state-default",this.hoverClass="ui-state-hover",this.element.addClass("ui-widget").find(".toc-title").addClass("ui-widget-header").end().find("li").addClass("ui-widget-content")):"bootstrap"===this.options.theme?(this.element.find(r+","+d).addClass("nav nav-list"),this.focusClass="active"):(this.focusClass=o,this.hoverClass=n),this},setOption:function(){e.Widget.prototype._setOption.apply(this,arguments)},setOptions:function(){e.Widget.prototype._setOptions.apply(this,arguments)},_scrollTo:function(t){var s=this,i=s.options.smoothScroll||0,o=s.options.scrollTo,n=e('div[data-unique="'+t.attr("data-unique")+'"]');return n.length?(e("html, body").promise().done(function(){e("html, body").animate({scrollTop:n.offset().top-(e.isFunction(o)?o.call():o)+"px"},{duration:i})}),s):s}})}),$(toc);
+</script>
+</head>
+<body class="index">
+
+<div class="tocify-wrapper">
+    <h3><a href="">PHP Curl Class</a></h3>
+    <div id="toc"></div>
+        <ul class="toc-footer">
+                <li><a href="https://github.com/php-curl-class/php-curl-class" target="_blank">PHP Curl Class on Github</a></li>
+        </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>PHP Curl Class is an object-oriented wrapper of the PHP cURL extension.</p>
+
+<h1 id="install">Install</h1>
+
+<h2 id="composer">Composer</h2>
+
+<p>Install using Composer.</p>
+<pre class="highlight shell"><span class="gp">$ </span>composer require php-curl-class/php-curl-class
+</pre>
+
+<h2 id="include">Include</h2>
+
+<p>Include PHP Curl Class.</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="k">require</span> <span class="s1">'Curl/Curl.php'</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">\Curl\Curl</span><span class="p">;</span>
+</pre>
+
+<h1 id="usage">Usage</h1>
+
+<h2 id="get">GET</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="k">require</span> <span class="s1">'Curl/Curl.php'</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">\Curl\Curl</span><span class="p">;</span>
+
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'https://www.example.com/'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'q'</span> <span class="o">=&gt;</span> <span class="s1">'keyword'</span><span class="p">,</span>
+<span class="p">));</span>
+</pre>
+
+<h2 id="post">POST</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">'https://www.example.com/login/'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'myusername'</span><span class="p">,</span>
+    <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'mypassword'</span><span class="p">,</span>
+<span class="p">));</span>
+</pre>
+
+<h2 id="put">PUT</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">'https://api.example.com/user/'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'first_name'</span> <span class="o">=&gt;</span> <span class="s1">'Zach'</span><span class="p">,</span>
+    <span class="s1">'last_name'</span> <span class="o">=&gt;</span> <span class="s1">'Borboa'</span><span class="p">,</span>
+<span class="p">));</span>
+</pre>
+
+<h2 id="patch">PATCH</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">patch</span><span class="p">(</span><span class="s1">'https://api.example.com/profile/'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'image'</span> <span class="o">=&gt;</span> <span class="s1">'@path/to/file.jpg'</span><span class="p">,</span>
+<span class="p">));</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">patch</span><span class="p">(</span><span class="s1">'https://api.example.com/profile/'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'image'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">CURLFile</span><span class="p">(</span><span class="s1">'path/to/file.jpg'</span><span class="p">),</span>
+<span class="p">));</span>
+</pre>
+
+<h2 id="delete">DELETE</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">'https://api.example.com/user/'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'1234'</span><span class="p">,</span>
+<span class="p">));</span>
+</pre>
+
+<h2 id="head">HEAD</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">head</span><span class="p">(</span><span class="s1">'https://www.example.com/song.mp3'</span><span class="p">);</span>
+</pre>
+
+<h2 id="options">OPTIONS</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">(</span><span class="s1">'https://www.example.com/'</span><span class="p">);</span>
+</pre>
+
+<h2 id="curl-options">Curl Options</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">setOpt</span><span class="p">(</span><span class="nx">CURLOPT_AUTOREFERER</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'https://www.example.com/302'</span><span class="p">);</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="c1">// Enable gzip compression.
+</span><span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">setOpt</span><span class="p">(</span><span class="nx">CURLOPT_ENCODING</span> <span class="p">,</span> <span class="s1">'gzip'</span><span class="p">);</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'https://www.example.com/image.png'</span><span class="p">);</span>
+</pre>
+
+<h2 id="authentication">Authentication</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">setBasicAuthentication</span><span class="p">(</span><span class="s1">'username'</span><span class="p">,</span> <span class="s1">'password'</span><span class="p">);</span>
+</pre>
+
+<h2 id="user-agent">User Agent</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">setUserAgent</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+</pre>
+
+<h2 id="referrer">Referrer</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">setReferrer</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+</pre>
+
+<h2 id="cookies">Cookies</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">setCookie</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">);</span>
+</pre>
+
+<h2 id="request-header">Request header</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">setHeader</span><span class="p">(</span><span class="s1">'X-Requested-With'</span><span class="p">,</span> <span class="s1">'XMLHttpRequest'</span><span class="p">);</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'https://www.example.com/'</span><span class="p">);</span>
+
+<span class="c1">// Case-insensitive access to headers.
+</span><span class="k">echo</span> <span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">request_headers</span><span class="p">[</span><span class="s1">'X-Requested-With'</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="c1">// XMLHttpRequest
+</span><span class="k">echo</span> <span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">request_headers</span><span class="p">[</span><span class="s1">'x-ReQUeStED-wiTH'</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="c1">// XMLHttpRequest
+</span></pre>
+
+<h2 id="response-header">Response header</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'https://www.example.com/image.png'</span><span class="p">);</span>
+
+<span class="c1">// Case-insensitive access to headers.
+</span><span class="k">echo</span> <span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">response_headers</span><span class="p">[</span><span class="s1">'Content-Type'</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="c1">// image/png
+</span><span class="k">echo</span> <span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">response_headers</span><span class="p">[</span><span class="s1">'CoNTeNT-TyPE'</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="c1">// image/png
+</span></pre>
+
+<h2 id="response-body">Response body</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'https://www.example.com/'</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">;</span>
+</pre>
+
+<h2 id="curl-object">Curl object</h2>
+
+<blockquote>
+<p>Example access to curl object.</p>
+</blockquote>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">setOpt</span><span class="p">(</span><span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1'</span><span class="p">);</span>
+<span class="c1">// or
+</span><span class="nx">curl_set_opt</span><span class="p">(</span><span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1'</span><span class="p">);</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="c1">// or
+</span><span class="nb">curl_close</span><span class="p">(</span><span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">curl</span><span class="p">);</span>
+</pre>
+
+<h2 id="errors">Errors</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'https://www.example.com/404'</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Error code: '</span> <span class="o">.</span> <span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">error_code</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="c1">// 404
+</span>    <span class="k">echo</span> <span class="s1">'Error message: '</span> <span class="o">.</span> <span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">error_message</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="c1">// HTTP/1.1 404 Not Found
+</span><span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+
+<h2 id="parallel-requests">Parallel Requests</h2>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="c1">// Requests in parallel with callback functions.
+</span><span class="nv">$curl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Curl</span><span class="p">();</span>
+
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">success</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$instance</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'call was successful. response was'</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$instance</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'call was unsuccessful.'</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">'error code:'</span> <span class="o">.</span> <span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">error_code</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">'error message:'</span> <span class="o">.</span> <span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">error_message</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">complete</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$instance</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'call completed'</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nv">$curl</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'https://duckduckgo.com/'</span><span class="p">,</span>
+    <span class="s1">'https://search.yahoo.com/search'</span><span class="p">,</span>
+    <span class="s1">'https://www.bing.com/search'</span><span class="p">,</span>
+    <span class="s1">'http://www.dogpile.com/search/web'</span><span class="p">,</span>
+    <span class="s1">'https://www.google.com/search'</span><span class="p">,</span>
+    <span class="s1">'https://www.wolframalpha.com/input/'</span><span class="p">,</span>
+<span class="p">),</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'q'</span> <span class="o">=&gt;</span> <span class="s1">'hello world'</span><span class="p">,</span>
+<span class="p">));</span>
+</pre>
+
+    </div>
+    <div class="dark-box"></div>
+</div>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-51346123-1', 'phpcurlclass.com');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

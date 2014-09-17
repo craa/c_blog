@@ -9,7 +9,7 @@
     <div class="panel-heading">友链</div>
     <div class="panel-body">
         <?php foreach($friendLinks as $friendLink): ?>
-            <a class="friendLink" href="<?php echo $friendLink->link_url; ?>"><?php echo $friendLink->link_name; ?></a>
+            <a class="friendLink" target="_blank" href="<?php echo $friendLink->link_url; ?>"><?php echo $friendLink->link_name; ?></a>
         <?php endforeach; ?>
     </div>
 </div>

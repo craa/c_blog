@@ -1,0 +1,6 @@
+[19-Aug-2014 00:22:22 PRC] PHP Fatal error:  Call to undefined method TermTaxonomy::addTaxotomy() in /home/www/c_blog/protected/models/TermTaxonomy.php on line 97
+[30-Aug-2014 12:44:06 PRC] PHP Parse error:  syntax error, unexpected ',' in /home/www/c_blog/protected/config/main.php on line 111
+[30-Aug-2014 12:44:08 PRC] PHP Parse error:  syntax error, unexpected ',' in /home/www/c_blog/protected/config/main.php on line 111
+[30-Aug-2014 12:44:10 PRC] PHP Parse error:  syntax error, unexpected ',' in /home/www/c_blog/protected/config/main.php on line 111
+[30-Aug-2014 12:44:14 PRC] PHP Parse error:  syntax error, unexpected ',' in /home/www/c_blog/protected/config/main.php on line 111
+[30-Aug-2014 12:44:15 PRC] PHP Parse error:  syntax error, unexpected ',' in /home/www/c_blog/protected/config/main.php on line 111
