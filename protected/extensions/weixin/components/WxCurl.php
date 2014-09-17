@@ -4,8 +4,9 @@
  * Date: 14-9-17 22:42
  * Description:
  */
-Yii::import('ext.weixin.components.utils.Curl.php');
-class WxCurl extends \Curl\Curl
+require_once 'utils/Curl.php';
+
+class WxCurl extends Curl\Curl
 {
 
 }
