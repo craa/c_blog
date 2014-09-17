@@ -38,6 +38,8 @@ return array(
         'weixin'=>array(
             'class'=>'ext.weixin.WeixinModule',
             'token'=>'chenhongwei',
+            'appid'=>'wx2b0939a7c90c1092',
+            'secret'=>'d34bb0cd5a182896f2b626b21523cbe3',
         ),
 
 	),

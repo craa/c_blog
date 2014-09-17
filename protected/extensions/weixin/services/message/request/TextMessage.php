@@ -13,7 +13,6 @@ class TextMessage extends BaseReqMessage
     // 重写init方法，处理该类型消息
     protected function init()
     {
-        echo 2;
         if($this->Content == '图文'){
             RespMessage::replyNews(array(
                 array(
