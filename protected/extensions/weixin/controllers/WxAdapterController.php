@@ -49,8 +49,8 @@ class WxAdapterController extends CController
             'redirect_uri'=>$this->createAbsoluteUrl('/weixin/wxAdapter'),
             'response_type'=>'code',
             'scope'=>'snsapi_base',
-            'state'=>'123#wechat_redirect'
-        ));
+            'state'=>'123'
+        )).'#wechat_redirect';
         $this->redirect($url);
     }
 }
